@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="18dp"
+    tools:context=".Principal">
+
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deseas que la aplicacion te pueda conocer y enviar mensajes en caso de emergencias" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:helperText="Es necesario ingresarlo para identificar a la persona en caso de una emergencia"
+        app:counterEnabled="true"
+        app:endIconMode="clear_text"
+        app:counterMaxLength="20"
+        android:hint="Nombre:"
+        >
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textPersonName"
+          android:id="@+id/Nombre"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:counterEnabled="true"
+        app:endIconMode="clear_text"
+        app:counterMaxLength="20"
+        android:hint="Apellidos:"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Apellidos"
+            android:inputType="textPersonName"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/ic_baseline_phone_24"
+        app:counterEnabled="true"
+        app:helperText="Ingresa un numero de telefono para enviar mensaje en caso de una emergencia"
+        app:endIconMode="clear_text"
+        app:counterMaxLength="10"
+        android:hint="Numero de telefono:"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Numero"
+            android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/Omitir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Enviar interfaz 2"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:onClick="onclick"
+            android:enabled="false"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/Enviar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onclick"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="Guardar Datos" />
+
+    </LinearLayout>
+
+</LinearLayout>
