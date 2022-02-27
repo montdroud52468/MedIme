@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Bienvenido Como estas"
+            android:text="Bienvenido"
             android:gravity="center"
             android:textColor="#fff"
             android:textStyle="bold"
