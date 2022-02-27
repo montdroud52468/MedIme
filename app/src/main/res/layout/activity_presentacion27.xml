@@ -71,6 +71,7 @@
                         android:layout_height="wrap_content"
                         android:text="LLAMAR A EMERGENCIAS"
                         android:textStyle="bold"
+                        android:id="@+id/TxtEme"
                         android:textAlignment="center"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

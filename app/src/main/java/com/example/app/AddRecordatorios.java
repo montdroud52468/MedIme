@@ -19,7 +19,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 public class AddRecordatorios extends AppCompatActivity implements View.OnClickListener {
+
 
     private Button noti;
     private PendingIntent pendingIntent,editarRec,informacionRec;
