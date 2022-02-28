@@ -186,7 +186,7 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         String apellit = preferencias.getString("Apellidot", "No Existe la informacion");
         String numbert = preferencias.getString("Numerot", "No Existe la informacion");
 
-        enviarMensaje(numbert,"Tu familiar "+usuario+" "+apelli+" Se encuentra en riesgo de favor de comunicrate con el en caso de que no conteste llama a emergencias.");
+        enviarMensaje(numbert,"¡¡¡EMERGENCIA!!!\nTu familiar "+usuario+" "+apelli+" se encuentra en riesgo,por favor comunicate con él, en caso de que no conteste llama a emergencias.");
     }
 
     private void enviarMensaje(String num, String str) {
