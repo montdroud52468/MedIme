@@ -20,7 +20,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class Principal extends AppCompatActivity {
     TextInputLayout t1, t2, t3;
     EditText cad1, cad2, cad3, cad4, cad5;
-    Switch sw1;
+    Switch switch1;
     GridLayout layout;
     Button omi, env;
     ScrollView padr;
@@ -34,13 +34,14 @@ public class Principal extends AppCompatActivity {
         cad3 = (EditText) findViewById(R.id.NombreT);
         cad4 = (EditText) findViewById(R.id.ApellidosT);
         cad5 = (EditText) findViewById(R.id.NumeroT);
-        sw1 = (Switch) findViewById(R.id.sw1);
+        switch1 = (Switch) findViewById(R.id.sw1);
         omi = (Button) findViewById(R.id.Omitir);
         layout = (GridLayout) findViewById(R.id.enc);
         padr = (ScrollView) findViewById(R.id.padre);
 
+        //Cargamos el estado del Switch y asi bloquear los editText restantes
         cargarPreferencias();
-        if (sw1.isChecked()) {
+        if (switch1.isChecked()) {
             ence();
 
         } else {
@@ -48,6 +49,7 @@ public class Principal extends AppCompatActivity {
         }
     }
 
+    //Aqui se encienden los objetos en el switch
     public void ence() {
 
         layout.setVisibility(View.VISIBLE);
@@ -57,6 +59,7 @@ public class Principal extends AppCompatActivity {
 
     }
 
+    //Aqui se encienden los objetos en el switch
     public void apag() {
         layout.setVisibility(View.INVISIBLE);
         layout.setEnabled(false);
@@ -64,8 +67,9 @@ public class Principal extends AppCompatActivity {
         omi.setEnabled(true);
     }
 
+    //Actualizacion del switch ya dentro en la intefaz
     public void validarSw(View view) {
-        if (sw1.isChecked()) {
+        if (switch1.isChecked()) {
             ence();
 
         } else {
@@ -73,6 +77,7 @@ public class Principal extends AppCompatActivity {
         }
     }
 
+    //En caso de que se edite esta informacion Se cargaran los datos que ya se habian puesto con anterioridad
     private void cargarPreferencias() {
         SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
 
@@ -95,8 +100,9 @@ public class Principal extends AppCompatActivity {
         }
         if (pase == 2) {
             Toast.makeText(getApplicationContext(), "EDITA USUARIO", Toast.LENGTH_SHORT).show();
-            sw1.setChecked(true);
+            switch1.setChecked(true);
             cad1.setText(usuario);
+            System.out.println();
             cad2.setText(apelli);
             cad3.setText(usuariot);
             cad4.setText(apellit);
@@ -105,25 +111,27 @@ public class Principal extends AppCompatActivity {
 
     }
 
+    //Evento del boton
     public void onclickPrin(View view) {
         switch (view.getId()) {
             case R.id.Enviar:
                 guardar();
                 Toast.makeText(getApplicationContext(), "Datos Guardados con Exito", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Principal.this, Presentacion27.class);
+                Intent intent = new Intent(this, Presentacion27.class);
                 startActivity(intent);
                 finish();
                 break;
             case R.id.Omitir:
                 Omitir();
                 Toast.makeText(getApplicationContext(), "Datos Omitidos", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(Principal.this, Presentacion27.class);
+                Intent intent2 = new Intent(this, Presentacion27.class);
                 startActivity(intent2);
                 finish();
                 break;
         }
     }
 
+    //No llenamos nada en caso de que se omita la informacion y asi bloquear el boton emergencia en presentacion27
     private void Omitir() {
         SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
         String nom = "";
@@ -138,6 +146,7 @@ public class Principal extends AppCompatActivity {
         editor.commit();
     }
 
+    //Se guarda la informacion y se reactiva el boton de emergencia en presentacion27
     public void guardar() {
         SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
 
@@ -153,6 +162,7 @@ public class Principal extends AppCompatActivity {
         editor.putString("Nombret", nomt);
         editor.putString("Apellidot", apet);
         editor.putString("Numerot", num);
+
         editor.putInt("Pase", 1);
 
         editor.commit();

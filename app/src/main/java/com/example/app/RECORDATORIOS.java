@@ -10,21 +10,23 @@ import android.widget.Toast;
 
 public class RECORDATORIOS extends AppCompatActivity implements View.OnClickListener {
     public CardView addRec;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recordatorios);
 
-        addRec=(CardView)findViewById(R.id.agregarRecord);
+        addRec = (CardView) findViewById(R.id.agregarRecord);
         addRec.setOnClickListener(this);
     }
 
+    //Evento del boton Agregar Nuevo recordatorio
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.agregarRecord:
-                Toast.makeText(getApplicationContext(),"Agregar Recordatorio",Toast.LENGTH_SHORT).show();
-                Intent agregar = new Intent(RECORDATORIOS.this,AddRecordatorios.class);
+                Toast.makeText(getApplicationContext(), "Agregar Recordatorio", Toast.LENGTH_SHORT).show();
+                Intent agregar = new Intent(RECORDATORIOS.this, AddRecordatorios.class);
                 startActivity(agregar);
                 break;
         }

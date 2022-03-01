@@ -18,8 +18,8 @@ public class Carga extends AppCompatActivity {
         setContentView(R.layout.activity_carga);
         new Handler().postDelayed(new Runnable() {
             @Override
-            public void run() {
-                Intent intent = new Intent(Carga.this,Principal.class);
+            public void run() {//No es necesario mover nada en esta paguina solo es el el efecto de carga en alguna accion
+                Intent intent = new Intent(Carga.this, Principal.class);
                 startActivity(intent);
                 finish();
             }

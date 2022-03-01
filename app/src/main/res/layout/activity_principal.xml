@@ -9,9 +9,9 @@
     tools:context=".Principal">
 
     <ScrollView
+        android:id="@+id/padre"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/padre">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,149 +45,149 @@
                 android:text="Guardar Datos" />
 
             <GridLayout
+                android:id="@+id/enc"
                 android:layout_width="match_parent"
                 android:layout_height="550dp"
                 android:layout_below="@id/title"
-                android:id="@+id/enc"
                 android:columnCount="1"
                 android:rowCount="1">
 
-                    <ScrollView
+                <ScrollView
+                    android:id="@+id/hijo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/hijo">
+                        android:orientation="vertical">
 
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_marginVertical="15dp"
+                            android:text="DATOS DEL MEDICADO: "
+                            android:textSize="16dp" />
 
-                            <TextView
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/T1"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nombre:"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+                            app:endIconMode="clear_text"
+                            app:helperText="Se recomienda que coloques el nombre para identificar a la persona"
+                            app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/Nombre"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginVertical="15dp"
-                                android:text="DATOS DEL MEDICADO: "
-                                android:textSize="16dp" />
+                                android:inputType="textPersonName" />
 
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/T1"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/T2"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Apellidos:"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+                            app:endIconMode="clear_text"
+                            app:helperText="Se recomienda que coloques el apelllido para identificar a la persona"
+                            app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/Apellidos"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Nombre:"
-                                app:counterEnabled="true"
-                                app:counterMaxLength="20"
-                                app:endIconMode="clear_text"
-                                app:helperText="Se recomienda que coloques el nombre para identificar a la persona"
-                                app:startIconDrawable="@drawable/ic_baseline_person_24">
+                                android:inputType="textPersonName" />
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/Nombre"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="textPersonName" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                            </com.google.android.material.textfield.TextInputLayout>
 
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/T2"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="15dp"
+                            android:text="DATOS DEL LA PERSONA EN CASO DE UNA EMEGENCIA: "
+                            android:textSize="16dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nombre:"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+                            app:endIconMode="clear_text"
+                            app:helperText="Es necesario ingresarlo para identificar a la persona en caso de una emergencia"
+                            app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/NombreT"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Apellidos:"
-                                app:counterEnabled="true"
-                                app:counterMaxLength="20"
-                                app:endIconMode="clear_text"
-                                app:helperText="Se recomienda que coloques el apelllido para identificar a la persona"
-                                app:startIconDrawable="@drawable/ic_baseline_person_24">
+                                android:inputType="textPersonName" />
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/Apellidos"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="textPersonName" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                            </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Apellidos:"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+                            app:endIconMode="clear_text"
+                            app:startIconDrawable="@drawable/ic_baseline_person_24">
 
-
-                            <TextView
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/ApellidosT"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginVertical="15dp"
-                                android:text="DATOS DEL LA PERSONA EN CASO DE UNA EMEGENCIA: "
-                                android:textSize="16dp" />
+                                android:inputType="textPersonName" />
 
-                            <com.google.android.material.textfield.TextInputLayout
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Numero de telefono:"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="10"
+                            app:endIconMode="clear_text"
+                            app:helperText="Ingresa un numero de telefono para enviar mensaje en caso de una emergencia"
+                            app:startIconDrawable="@drawable/ic_baseline_phone_24">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/NumeroT"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Nombre:"
-                                app:counterEnabled="true"
-                                app:counterMaxLength="20"
-                                app:endIconMode="clear_text"
-                                app:helperText="Es necesario ingresarlo para identificar a la persona en caso de una emergencia"
-                                app:startIconDrawable="@drawable/ic_baseline_person_24">
+                                android:inputType="number" />
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/NombreT"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="textPersonName" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Apellidos:"
-                                app:counterEnabled="true"
-                                app:counterMaxLength="20"
-                                app:endIconMode="clear_text"
-                                app:startIconDrawable="@drawable/ic_baseline_person_24">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/ApellidosT"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="textPersonName" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Numero de telefono:"
-                                app:counterEnabled="true"
-                                app:counterMaxLength="10"
-                                app:endIconMode="clear_text"
-                                app:helperText="Ingresa un numero de telefono para enviar mensaje en caso de una emergencia"
-                                app:startIconDrawable="@drawable/ic_baseline_phone_24">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/NumeroT"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="number" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
-                            <Button
-                                android:id="@+id/Enviar"
-                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:onClick="onclickPrin"
-                                android:text="Guardar Datos" />
+                        <Button
+                            android:id="@+id/Enviar"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:onClick="onclickPrin"
+                            android:text="Guardar Datos" />
 
 
-                        </LinearLayout>
+                    </LinearLayout>
 
 
-                    </ScrollView>
+                </ScrollView>
 
             </GridLayout>
 
