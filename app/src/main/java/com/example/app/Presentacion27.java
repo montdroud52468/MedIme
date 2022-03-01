@@ -108,6 +108,8 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.cinco:
                 Toast.makeText(getApplicationContext(), "Calendario", Toast.LENGTH_SHORT).show();
+                Intent Conf = new Intent(this, SettingsActivity.class);
+                startActivity(Conf);
                 break;
             case R.id.seis:
                 eliminardata();
