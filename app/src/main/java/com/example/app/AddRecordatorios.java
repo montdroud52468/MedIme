@@ -17,9 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-
-import com.google.android.material.textfield.TextInputLayout;
 
 public class AddRecordatorios extends AppCompatActivity implements View.OnClickListener {
 
@@ -47,8 +44,8 @@ public class AddRecordatorios extends AppCompatActivity implements View.OnClickL
                 setPendinfo();
                 setPendedita();
 
-                createNoficationChannel();
-                createNofication();
+                creaNotificacion();
+                creaNotificacionNuevas();
                 break;
         }
 
@@ -81,7 +78,8 @@ public class AddRecordatorios extends AppCompatActivity implements View.OnClickL
 
     }
 
-    private void createNoficationChannel() {
+    //Funciona en versiones viejas de android
+    private void creaNotificacion() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Notificacion";
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
@@ -103,7 +101,8 @@ public class AddRecordatorios extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void createNofication() {//Funciona para version android 10
+    //Funciona para version android 10
+    private void creaNotificacionNuevas() {
         SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
 
         String usuario = preferencias.getString("Nombre", "No Existe la informacion");
