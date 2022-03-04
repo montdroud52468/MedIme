@@ -15,16 +15,16 @@ import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class Principal extends AppCompatActivity {
-    TextInputLayout t1, t2, t3;
     EditText cad1, cad2, cad3, cad4, cad5;
     Switch switch1;
     GridLayout layout;
     Button omi, env;
     ScrollView padr;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

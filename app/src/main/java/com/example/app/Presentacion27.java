@@ -1,5 +1,6 @@
 package com.example.app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -11,8 +12,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +26,7 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
     int alar = 0;
     public CardView card1, card2, card3, card4, card5, card6, help;
     TextView no, txtEme;
+    private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,11 +189,14 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         String apellit = preferencias.getString("Apellidot", "No Existe la informacion");
         String numbert = preferencias.getString("Numerot", "No Existe la informacion");
 
-        enviarMensaje(numbert, "¡¡¡EMERGENCIA!!!\nTu familiar " + usuario + " " + apelli + " se encuentra en riesgo,por favor comunicate con él, en caso de que no conteste llama a emergencias.");
+        String loc = localizar();
+        enviarMensajeTexto(numbert, "¡¡¡EMERGENCIA!!!\nTu familiar " + usuario + " " + apelli + " se encuentra en riesgo,por favor comunicate con él, en caso de que no conteste llama a emergencias.");
+        enviarMensajeGPS(numbert," Esta es la localiación de: "+usuario+" "+"\n\nhttps://maps.google.com/?q="+loc);
+
     }
 
     //Verificacion del envio de mensaje
-    private void enviarMensaje(String num, String str) {
+    private void enviarMensajeTexto(String num, String str) {
         try {
             SmsManager sms = SmsManager.getDefault();
             sms.sendTextMessage(num, null, str, null, null);
@@ -196,5 +205,34 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(getApplicationContext(), "Mensaje no enviado Vuelva intentarlo", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
+    }
+    private void enviarMensajeGPS(String num, String str) {
+        try {
+            SmsManager sms = SmsManager.getDefault();
+            sms.sendTextMessage(num, null, str, null, null);
+            Toast.makeText(getApplicationContext(), "ubicacion enviada", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Mensaje no enviado Vuelva intentarlo", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    //Obtenemos longitud y magnitud para la ubicacion
+    private String localizar() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
+            }, 1000);
+        }
+        String Loca = "";
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (locationManager != null) {
+            Log.d("Latitud", String.valueOf(location.getLatitude()));
+            Log.d("Longitud", String.valueOf(location.getLongitude()));
+            Loca = String.valueOf(location.getLatitude()) + "," + String.valueOf(location.getLongitude());
+        }
+        return Loca;
+
     }
 }
