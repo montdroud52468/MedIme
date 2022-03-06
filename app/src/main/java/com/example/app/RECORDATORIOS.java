@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 
 public class RECORDATORIOS extends AppCompatActivity implements View.OnClickListener {
@@ -15,7 +16,7 @@ public class RECORDATORIOS extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recordatorios);
-
+        this.setTitle("RECORDATORIOS");
         addRec = (CardView) findViewById(R.id.agregarRecord);
         addRec.setOnClickListener(this);
     }

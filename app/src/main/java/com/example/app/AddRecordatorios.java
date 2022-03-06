@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 public class AddRecordatorios extends AppCompatActivity implements View.OnClickListener {
@@ -36,7 +37,7 @@ public class AddRecordatorios extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recordatorios);
-
+        this.setTitle("AGREGAR RECORDATORIOS");
         noti =(Button) findViewById(R.id.not);
 
     }
@@ -128,8 +129,8 @@ public class AddRecordatorios extends AppCompatActivity implements View.OnClickL
         builder.setVisibility(NotificationCompat.VISIBILITY_PRIVATE);
         builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
         builder.setContentIntent(pendingIntent);
-        builder.addAction(R.drawable.ic_baseline_info_24, "Recordatorios", informacionRec);
-        builder.addAction(R.drawable.ic_baseline_edit_24, "Editar Recordatorio", editarRec);
+        builder.addAction(R.drawable.info_negro, "Recordatorios", informacionRec);
+        builder.addAction(R.drawable.edit_negro, "Editar Recordatorio", editarRec);
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
         notificationManagerCompat.notify(NOTIFICACION_ID, builder.build());
     }

@@ -15,6 +15,7 @@ public class Carga extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_carga);
         new Handler().postDelayed(new Runnable() {
             @Override

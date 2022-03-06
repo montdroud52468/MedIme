@@ -18,21 +18,23 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Presentacion27 extends AppCompatActivity implements View.OnClickListener {
     int alar = 0;
     public CardView card1, card2, card3, card4, card5, card6, help;
-    TextView no, txtEme;
+    TextView no, txtEme,txtuno, txtdos,txttre,txtcua ,txtcin ,txtsei,txtsie;
     private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_presentacion27);
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)//Permisos para enviar mensajes desde la app
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -41,10 +43,16 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         } else {
 
         }
-        ;
 
         no = (TextView) findViewById(R.id.info2);
         txtEme = (TextView) findViewById(R.id.TxtEme);
+        txtuno = (TextView) findViewById(R.id.txtrec);
+        txtdos = (TextView) findViewById(R.id.txtinfo);
+        txttre = (TextView) findViewById(R.id.txted1);
+        txtcua = (TextView) findViewById(R.id.txted2);
+        txtcin = (TextView) findViewById(R.id.txtmed1);
+        txtsei = (TextView) findViewById(R.id.txtmed2);
+        txtsie = (TextView) findViewById(R.id.txtconf);
         card1 = (CardView) findViewById(R.id.uno);
         card2 = (CardView) findViewById(R.id.dos);
         card3 = (CardView) findViewById(R.id.tres);
@@ -63,6 +71,8 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
 
         infor();//Para que no me funione el boton emergencia en caso de no llenar el primer formulario y cambiamos la etiqueta de la presentacion
     }
+
+
 
     private void infor() {//Para que no me funione el boton emergencia en caso de no llenar el primer formulario y cambiamos la etiqueta de la presentacion
         SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
@@ -113,12 +123,12 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cinco:
+                Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.seis:
                 Toast.makeText(getApplicationContext(), "Calendario", Toast.LENGTH_SHORT).show();
                 Intent Conf = new Intent(this, Configuracion.class);
                 startActivity(Conf);
-                break;
-            case R.id.seis:
-                eliminardata();
                 break;
             case R.id.emergencia:
                 Alarma();
@@ -129,39 +139,7 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
     }
 
     //Para un mensaje emergente en caso de borrar los datos completos USUARIO Y MEDICAMENTO
-    private void eliminardata() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setMessage("¿Estas seguro de eliminar todos los datos del usuario?").setTitle("Eliminacion de Datos");
-
-        builder.setPositiveButton("Si, Eliminar Datos", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(), "Eliminando Datos", Toast.LENGTH_SHORT).show();
-                Eliminar();
-                Intent eli = new Intent(Presentacion27.this, Carga.class);
-                startActivity(eli);
-                finish();
-            }
-        });
-        builder.setNegativeButton("No Eliminar Datos", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        //Toast.makeText(getApplicationContext(), "Eliminacion", Toast.LENGTH_SHORT).show();
-
-    }
-
-    //ELIMINA LOS DATOS COMPLETOS
-    public void Eliminar() {
-        SharedPreferences.Editor editor = getSharedPreferences("Credenciales", Context.MODE_PRIVATE).edit();
-        editor.clear().apply();
-
-    }
 
     //Solo es como un seguro en caso de precionar el boton de emergencia 3 veces
     public void Alarma() {
@@ -189,14 +167,13 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         String apellit = preferencias.getString("Apellidot", "No Existe la informacion");
         String numbert = preferencias.getString("Numerot", "No Existe la informacion");
 
-        String loc = localizar();
-        enviarMensajeTexto(numbert, "¡¡¡EMERGENCIA!!!\nTu familiar " + usuario + " " + apelli + " se encuentra en riesgo,por favor comunicate con él, en caso de que no conteste llama a emergencias.");
-        enviarMensajeGPS(numbert," Esta es la localiación de: "+usuario+" "+"\n\nhttps://maps.google.com/?q="+loc);
+        enviarMensaje(numbert, "¡¡¡EMERGENCIA!!!\nTu familiar " + usuario + " " + apelli + " se encuentra en riesgo,por favor comunicate con él, en caso de que no conteste llama a emergencias.");
+        //enviarMensaje(numbert," Esta es la localiación de: "+usuario+" "+"\n\nhttps://maps.google.com/?q="+loc);
 
     }
 
     //Verificacion del envio de mensaje
-    private void enviarMensajeTexto(String num, String str) {
+    private void enviarMensaje(String num, String str) {
         try {
             SmsManager sms = SmsManager.getDefault();
             sms.sendTextMessage(num, null, str, null, null);
@@ -205,34 +182,5 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(getApplicationContext(), "Mensaje no enviado Vuelva intentarlo", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
-    }
-    private void enviarMensajeGPS(String num, String str) {
-        try {
-            SmsManager sms = SmsManager.getDefault();
-            sms.sendTextMessage(num, null, str, null, null);
-            Toast.makeText(getApplicationContext(), "ubicacion enviada", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Mensaje no enviado Vuelva intentarlo", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-    }
-
-    //Obtenemos longitud y magnitud para la ubicacion
-    private String localizar() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
-            }, 1000);
-        }
-        String Loca = "";
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        if (locationManager != null) {
-            Log.d("Latitud", String.valueOf(location.getLatitude()));
-            Log.d("Longitud", String.valueOf(location.getLongitude()));
-            Loca = String.valueOf(location.getLatitude()) + "," + String.valueOf(location.getLongitude());
-        }
-        return Loca;
-
     }
 }

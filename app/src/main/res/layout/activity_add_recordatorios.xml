@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:startIconDrawable="@drawable/ic_baseline_person_24"
+            app:startIconDrawable="@drawable/person_negro"
             app:helperText=""
             app:counterEnabled="true"
             app:endIconMode="clear_text"

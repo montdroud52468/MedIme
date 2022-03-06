@@ -1,12 +1,16 @@
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -21,13 +25,14 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class Principal extends AppCompatActivity {
     EditText cad1, cad2, cad3, cad4, cad5;
-    Switch switch1;
+    Switch switch1,switch2;
     GridLayout layout;
     Button omi, env;
     ScrollView padr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_principal);
         cad1 = (EditText) findViewById(R.id.Nombre);
         cad2 = (EditText) findViewById(R.id.Apellidos);
@@ -35,6 +40,7 @@ public class Principal extends AppCompatActivity {
         cad4 = (EditText) findViewById(R.id.ApellidosT);
         cad5 = (EditText) findViewById(R.id.NumeroT);
         switch1 = (Switch) findViewById(R.id.sw1);
+        switch2 = (Switch) findViewById(R.id.sw2);
         omi = (Button) findViewById(R.id.Omitir);
         layout = (GridLayout) findViewById(R.id.enc);
         padr = (ScrollView) findViewById(R.id.padre);
@@ -71,9 +77,38 @@ public class Principal extends AppCompatActivity {
     public void validarSw(View view) {
         if (switch1.isChecked()) {
             ence();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)//Permisos para enviar mensajes desde la app
+                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                apag();
+                switch1.setChecked(false);
+                Toast.makeText(getApplicationContext(), "No se autorizo envios de SMS", Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.SEND_SMS,}, 4000);
+            } else {
+                switch1.setChecked(true);
+                Toast.makeText(getApplicationContext(), "Se autorizo envios de SMS", Toast.LENGTH_SHORT).show();
+            }
 
         } else {
             apag();
+        }
+
+    }
+    public void validarSw2(View view) {
+        if (switch2.isChecked()) {
+        } else {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                switch2.setChecked(false);
+                Toast.makeText(getApplicationContext(), "No se autorizo envios de GPS via SMS", Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,}, 4000);
+                return;
+            }
+            switch2.setChecked(true);
+            Toast.makeText(getApplicationContext(), "Se autorizo envios de GPS via SMS", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -162,7 +197,6 @@ public class Principal extends AppCompatActivity {
         editor.putString("Nombret", nomt);
         editor.putString("Apellidot", apet);
         editor.putString("Numerot", num);
-
         editor.putInt("Pase", 1);
 
         editor.commit();
