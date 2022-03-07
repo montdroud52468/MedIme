@@ -114,7 +114,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:checked="false"
-                            android:onClick="validarSw2"
+                            android:onClick="validarSw"
                             android:text="Permites la ubicacion del dispositivo"
                             android:textSize="16dp" />
 

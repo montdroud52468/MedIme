@@ -34,6 +34,8 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        Ubicacion ub= new Ubicacion(this);
+        Toast.makeText(getApplicationContext(),"ACTULIZANDO UBICACION",Toast.LENGTH_LONG).show();
         setContentView(R.layout.activity_presentacion27);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)//Permisos para enviar mensajes desde la app
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
@@ -160,15 +162,18 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
 
     //Para enviar el mensaje
     private void MSJ() {
+        Ubicacion u= new Ubicacion(this);
+        Toast.makeText(getApplicationContext(),"ACTULIZANDO UBICACION",Toast.LENGTH_LONG).show();
         SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
         String usuario = preferencias.getString("Nombre", "No Existe la informacion");
         String apelli = preferencias.getString("Apellido", "No Existe la informacion");
         String usuariot = preferencias.getString("Nombret", "No Existe la informacion");
         String apellit = preferencias.getString("Apellidot", "No Existe la informacion");
         String numbert = preferencias.getString("Numerot", "No Existe la informacion");
-
+        String ub = preferencias.getString("Ubicacion", "No hay info de GPS");
         enviarMensaje(numbert, "¡¡¡EMERGENCIA!!!\nTu familiar " + usuario + " " + apelli + " se encuentra en riesgo,por favor comunicate con él, en caso de que no conteste llama a emergencias.");
-        //enviarMensaje(numbert," Esta es la localiación de: "+usuario+" "+"\n\nhttps://maps.google.com/?q="+loc);
+        Toast.makeText(this,ub,Toast.LENGTH_LONG).show();
+        enviarMensaje(numbert," La encuentras en: "+"\n\nhttps://maps.google.com/?q="+ub);
 
     }
 

@@ -25,10 +25,11 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class Principal extends AppCompatActivity {
     EditText cad1, cad2, cad3, cad4, cad5;
-    Switch switch1,switch2;
+    Switch switch1, switch2;
     GridLayout layout;
     Button omi, env;
     ScrollView padr;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,14 +61,14 @@ public class Principal extends AppCompatActivity {
 
         layout.setVisibility(View.VISIBLE);
         layout.setEnabled(true);
-        omi.setVisibility(View.INVISIBLE);
+        omi.setVisibility(View.GONE);
         omi.setEnabled(false);
 
     }
 
     //Aqui se encienden los objetos en el switch
     public void apag() {
-        layout.setVisibility(View.INVISIBLE);
+        layout.setVisibility(View.GONE);
         layout.setEnabled(false);
         omi.setVisibility(View.VISIBLE);
         omi.setEnabled(true);
@@ -89,15 +90,11 @@ public class Principal extends AppCompatActivity {
                 switch1.setChecked(true);
                 Toast.makeText(getApplicationContext(), "Se autorizo envios de SMS", Toast.LENGTH_SHORT).show();
             }
-
-        } else {
+        }else {
             apag();
         }
 
-    }
-    public void validarSw2(View view) {
         if (switch2.isChecked()) {
-        } else {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -105,11 +102,18 @@ public class Principal extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "No se autorizo envios de GPS via SMS", Toast.LENGTH_SHORT).show();
                 ActivityCompat.requestPermissions(this, new String[]{
                         Manifest.permission.ACCESS_FINE_LOCATION,}, 4000);
-                return;
+            } else {
+                switch1.setChecked(true);
+                Toast.makeText(getApplicationContext(), "Se autorizo envios de GPS via SMS", Toast.LENGTH_SHORT).show();
+
             }
-            switch2.setChecked(true);
-            Toast.makeText(getApplicationContext(), "Se autorizo envios de GPS via SMS", Toast.LENGTH_SHORT).show();
+
         }
+
+    }
+
+    public void validarSw2(View view) {
+
     }
 
     //En caso de que se edite esta informacion Se cargaran los datos que ya se habian puesto con anterioridad

@@ -39,6 +39,7 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
     TextView text;
     float X;
     Switch swi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
