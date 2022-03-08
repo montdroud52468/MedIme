@@ -46,6 +46,9 @@ public class Recordatorios2 extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(getApplicationContext(),"Nombre: "+lv1.getItemAtPosition(i)+"\nTiempo: "+ TiemMedicamento2.get(i),Toast.LENGTH_SHORT).show();
                 Intent resNot = new Intent(Recordatorios2.this, ResultadoNoti.class);
                 resNot.putExtra("ResID", (String) lv1.getItemAtPosition(i));
+                int val=1+i;
+                String id2=Integer.toString(val);
+                resNot.putExtra("IDRea",id2);
                 startActivity(resNot);
             }
         });
@@ -73,17 +76,26 @@ public class Recordatorios2 extends AppCompatActivity implements View.OnClickLis
             j++;
             String a=Integer.toString(j);
 
-            String Nom = preferencias.getString(a, "No Existe la informacion");
-            String Tie = preferencias.getString(Nom, "No Existe la informacion");
-            String Tom = preferencias.getString(Tie, "No Existe la informacion");
-            String Medi = preferencias.getString(Tom, "No Existe la informacion");
-            String Can = preferencias.getString(Medi, "No Existe la informacion");
+            String Nom = preferencias.getString(a, "");
+            String Tie = preferencias.getString(Nom, "");
+            String Tom = preferencias.getString(Tie, "");
+            String Medi = preferencias.getString(Tom, "");
+            String Can = preferencias.getString(Medi, "");
 
-            NombMedicamemto2.add(Nom);
-            TiemMedicamento2.add(Tie);
-            TomaMedicamento2.add(Tom);
-            MediMedicamento2.add(Medi);
-            TotaMedicamento2.add(Can);
+            if(Nom==""&&Tie==""&&Tom==""&&Medi==""&&Can==""){
+                NombMedicamemto2.remove(Nom);
+                TiemMedicamento2.remove(Tie);
+                TomaMedicamento2.remove(Tom);
+                MediMedicamento2.remove(Medi);
+                TotaMedicamento2.remove(Can);
+            }else{
+                NombMedicamemto2.add(Nom);
+                TiemMedicamento2.add(Tie);
+                TomaMedicamento2.add(Tom);
+                MediMedicamento2.add(Medi);
+                TotaMedicamento2.add(Can);
+
+            }
         }
     }
 }

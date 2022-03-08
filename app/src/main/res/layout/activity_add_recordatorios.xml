@@ -40,7 +40,7 @@
         android:visibility="gone"
         android:id="@+id/NomMedT"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperText="Puedes ingresar cualquier caracter"
+        app:helperText="Ejemplo Doclofenaco, Paracetamol, Etc."
         app:counterEnabled="true"
         app:endIconMode="clear_text"
         app:startIconDrawable="@drawable/favorite_negro">
@@ -57,7 +57,7 @@
         android:hint="Tiempo del medicamento"
         app:boxBackgroundMode="outline"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperText="Puedes ingresar cualquier caracter"
+        app:helperText="Cuanto tiempo estaras medicandote en semanas"
         app:counterEnabled="true"
         app:endIconMode="clear_text"
         android:visibility="gone"
@@ -76,7 +76,7 @@
         android:hint="Cada cuando toma medicamento"
         app:boxBackgroundMode="outline"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperText="Puedes ingresar cualquier caracter"
+        app:helperText="Tus ciclos de tomado, cada 8hrs etc."
         app:counterEnabled="true"
         app:endIconMode="clear_text"
         android:visibility="gone"
@@ -85,6 +85,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="time"
             android:id="@+id/TomMed"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +96,7 @@
         android:hint="Cantidad de medicamento a tomar"
         app:boxBackgroundMode="outline"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperText="Puedes ingresar cualquier caracter"
+        app:helperText="Por cada ciclo cuantas pastillas tomas 1 pastilla"
         app:counterEnabled="true"
         app:endIconMode="clear_text"
         android:visibility="gone"
@@ -114,7 +115,7 @@
         android:hint="Cantidad total del medicamento"
         app:boxBackgroundMode="outline"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperText="Puedes ingresar cualquier caracter"
+        app:helperText="Medicamento total 30 capsulas de Diclofenaco"
         app:counterEnabled="true"
         app:endIconMode="clear_text"
         android:visibility="gone"

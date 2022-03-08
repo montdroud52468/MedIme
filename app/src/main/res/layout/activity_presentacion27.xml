@@ -216,18 +216,18 @@
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/edit_negro"/>
+                                android:src="@drawable/sin_asignar"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="EDITAR"
+                                android:text="AUN NO"
                                 android:id="@+id/txted1"
                                 android:textStyle="bold"
                                 android:textAlignment="center"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="RECORDATORIO"
+                                android:text="ASIGNADA"
                                 android:id="@+id/txted2"
                                 android:textStyle="bold"
                                 android:textAlignment="center"/>
