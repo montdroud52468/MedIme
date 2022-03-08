@@ -37,11 +37,11 @@
 
             <Button
                 android:id="@+id/Omitir"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="center"
                 android:onClick="onclickPrin"
+                app:cornerRadius="20dp"
                 android:text="Guardar Datos" />
 
             <GridLayout
@@ -184,11 +184,11 @@
 
                         <Button
                             android:id="@+id/Enviar"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
+                            android:layout_gravity="center"
                             android:onClick="onclickPrin"
+                            app:cornerRadius="20dp"
                             android:text="Guardar Datos" />
 
 

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15dp"
-    app:layoutDescription="@xml/activity_presentacion27_scene"
-    tools:context=".RECORDATORIOS">
+    tools:context=".Recordatorios2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,44 +15,52 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:rowCount="1"
-            android:columnCount="1">
+            android:columnCount="1"
+            android:rowCount="1">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/agregarRecord"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_row="0"
-                android:layout_column="0"
-                android:layout_gravity="fill"
                 android:layout_rowWeight="1"
+                android:layout_column="0"
                 android:layout_columnWeight="1"
+                android:layout_gravity="fill"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="9dp"
-                app:cardElevation="8dp"
-                >
+                app:cardElevation="8dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical|center_horizontal"
                     android:gravity="center"
-                    android:layout_gravity="center_vertical|center_horizontal">
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/add_alarm_negro"/>
+                        android:src="@drawable/add_alarm_negro" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="AGREGAR UN RECORDATORIO"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
 
         </GridLayout>
+
+        <ListView
+            android:id="@+id/Recordatiorioslist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
     </LinearLayout>
 
 

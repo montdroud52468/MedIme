@@ -35,7 +35,7 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         Ubicacion ub= new Ubicacion(this);
-        Toast.makeText(getApplicationContext(),"ACTULIZANDO UBICACION",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"ACTULIZANDO UBICACION",Toast.LENGTH_LONG).show();
         setContentView(R.layout.activity_presentacion27);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)//Permisos para enviar mensajes desde la app
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
@@ -103,12 +103,12 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.uno:
-                Toast.makeText(getApplicationContext(), "Todos los Recordatorios", Toast.LENGTH_SHORT).show();
-                Intent agre = new Intent(Presentacion27.this, RECORDATORIOS.class);
+                //Toast.makeText(getApplicationContext(), "Todos los Recordatorios", Toast.LENGTH_SHORT).show();
+                Intent agre = new Intent(Presentacion27.this, Recordatorios2.class);
                 startActivity(agre);
                 break;
             case R.id.dos:
-                Toast.makeText(getApplicationContext(), "Cargando datos del usuario", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Cargando datos del usuario", Toast.LENGTH_SHORT).show();
                 SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferencias.edit();
                 editor.putInt("Pase", 2);
@@ -117,18 +117,18 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
                 startActivity(edi);
                 break;
             case R.id.tres:
-                Toast.makeText(getApplicationContext(), "Editar Recordatorio", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Editar Recordatorio", Toast.LENGTH_SHORT).show();
                 Intent ediR = new Intent(this, EditaRecord.class);
                 startActivity(ediR);
                 break;
             case R.id.cuatro:
-                Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cinco:
-                Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.seis:
-                Toast.makeText(getApplicationContext(), "Calendario", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Calendario", Toast.LENGTH_SHORT).show();
                 Intent Conf = new Intent(this, Configuracion.class);
                 startActivity(Conf);
                 break;
@@ -163,7 +163,7 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
     //Para enviar el mensaje
     private void MSJ() {
         Ubicacion u= new Ubicacion(this);
-        Toast.makeText(getApplicationContext(),"ACTULIZANDO UBICACION",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"ACTULIZANDO UBICACION",Toast.LENGTH_LONG).show();
         SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
         String usuario = preferencias.getString("Nombre", "No Existe la informacion");
         String apelli = preferencias.getString("Apellido", "No Existe la informacion");
@@ -172,7 +172,7 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         String numbert = preferencias.getString("Numerot", "No Existe la informacion");
         String ub = preferencias.getString("Ubicacion", "No hay info de GPS");
         enviarMensaje(numbert, "¡¡¡EMERGENCIA!!!\nTu familiar " + usuario + " " + apelli + " se encuentra en riesgo,por favor comunicate con él, en caso de que no conteste llama a emergencias.");
-        Toast.makeText(this,ub,Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,ub,Toast.LENGTH_LONG).show();
         enviarMensaje(numbert," La encuentras en: "+"\n\nhttps://maps.google.com/?q="+ub);
 
     }

@@ -22,12 +22,17 @@
         <entry key="..\:/Users/ricar/Documents/APP/app/src/main/res/layout/settings_activity.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/drawable/custom_buton.xml" value="0.1225" />
         <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_add_recordatorios.xml" value="0.22" />
+        <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_carga.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_carga2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_configuracion.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_edita_record.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_presentacion27.xml" value="0.22" />
         <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_principal.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_recordatorios.xml" value="0.1" />
-        <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_resultado_noti.xml" value="0.1" />
+        <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_recordatorios2.xml" value="0.25" />
+        <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/activity_resultado_noti.xml" value="0.25" />
+        <entry key="..\:/Users/ricar/StudioProjects/MedIme/app/src/main/res/layout/list_item_medicamentorecord.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

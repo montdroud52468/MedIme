@@ -112,10 +112,6 @@ public class Principal extends AppCompatActivity {
 
     }
 
-    public void validarSw2(View view) {
-
-    }
-
     //En caso de que se edite esta informacion Se cargaran los datos que ya se habian puesto con anterioridad
     private void cargarPreferencias() {
         SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
@@ -140,8 +136,8 @@ public class Principal extends AppCompatActivity {
         if (pase == 2) {
             Toast.makeText(getApplicationContext(), "EDITA USUARIO", Toast.LENGTH_SHORT).show();
             switch1.setChecked(true);
+            switch2.setChecked(true);
             cad1.setText(usuario);
-            System.out.println();
             cad2.setText(apelli);
             cad3.setText(usuariot);
             cad4.setText(apellit);
@@ -181,6 +177,7 @@ public class Principal extends AppCompatActivity {
         editor.putString("Apellidot", nom);
         editor.putString("Numerot", nom);
         editor.putInt("Pase", 1);
+        editor.putString("ID", "0");
 
         editor.commit();
     }
@@ -201,6 +198,7 @@ public class Principal extends AppCompatActivity {
         editor.putString("Nombret", nomt);
         editor.putString("Apellidot", apet);
         editor.putString("Numerot", num);
+        editor.putString("ID", "0");
         editor.putInt("Pase", 1);
 
         editor.commit();

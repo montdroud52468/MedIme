@@ -10,8 +10,8 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_MMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.SOUND"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.SOUND" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +20,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.APP">
+        <activity
+            android:name=".Carga2"
+            android:exported="false" />
+        <activity
+            android:name=".Recordatorios2"
+            android:exported="false" />
         <activity
             android:name=".Configuracion"
             android:exported="false" />
@@ -33,15 +39,6 @@
             android:name=".AddRecordatorios"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".RECORDATORIOS"
-            android:exported="false"
-            android:parentActivityName=".AddRecordatorios"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AddRecordatorios" />
-        </activity>
         <activity
             android:name=".Presentacion27"
             android:exported="false"

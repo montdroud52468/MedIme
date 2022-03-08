@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -36,17 +35,95 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre del Medicamento"
+        android:hint="nombre"
+        app:boxBackgroundMode="outline"
+        android:visibility="gone"
+        android:id="@+id/NomMedT"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:helperText="Puedes ingresar cualquier caracter"
+        app:counterEnabled="true"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/favorite_negro">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NomMed"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tiempo del medicamento"
         app:boxBackgroundMode="outline"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:helperText="Puedes ingresar cualquier caracter"
         app:counterEnabled="true"
         app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+        android:visibility="gone"
+        android:id="@+id/TimMedT"
+        app:startIconDrawable="@drawable/favorite_negro">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/NomMed"/>
+            android:id="@+id/TimMed"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cada cuando toma medicamento"
+        app:boxBackgroundMode="outline"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:helperText="Puedes ingresar cualquier caracter"
+        app:counterEnabled="true"
+        app:endIconMode="clear_text"
+        android:visibility="gone"
+        android:id="@+id/TomMedT"
+        app:startIconDrawable="@drawable/favorite_negro">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/TomMed"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cantidad de medicamento a tomar"
+        app:boxBackgroundMode="outline"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:helperText="Puedes ingresar cualquier caracter"
+        app:counterEnabled="true"
+        app:endIconMode="clear_text"
+        android:visibility="gone"
+        android:id="@+id/CanMedT"
+        app:startIconDrawable="@drawable/favorite_negro">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/CanMed"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cantidad total del medicamento"
+        app:boxBackgroundMode="outline"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:helperText="Puedes ingresar cualquier caracter"
+        app:counterEnabled="true"
+        app:endIconMode="clear_text"
+        android:visibility="gone"
+        android:id="@+id/CantMedT"
+        app:startIconDrawable="@drawable/favorite_negro">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/CantMed"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -55,8 +132,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="onclick"
+        android:onClick="onclickaddRec"
+        android:visibility="gone"
         android:text="Recordar medicamento"
+        app:cornerRadius="20dp" />
+    <Button
+        android:id="@+id/CargMed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="onclickaddRec"
+        android:visibility="gone"
+        android:text="Cargar"
         app:cornerRadius="20dp" />
 
 

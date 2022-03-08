@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,15 +32,14 @@ import android.widget.Toast;
 import com.google.android.material.slider.Slider;
 
 public class Configuracion extends AppCompatActivity implements View.OnClickListener {
-    public CardView Elimi;
+    public CardView Elimi,ElimiMed;
     Slider tamano;
-    ConstraintLayout back;
+    LinearLayout back;
     private ContentResolver contentResolver;
     private Window window;
     TextView text;
     float X;
     Switch swi;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,9 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_configuracion);
         Elimi = (CardView) findViewById(R.id.eliminar);
         Elimi.setOnClickListener(this);
-        back=(ConstraintLayout)findViewById(R.id.back);
+        ElimiMed = (CardView) findViewById(R.id.eliminarMed);
+        ElimiMed.setOnClickListener(this);
+        back=(LinearLayout)findViewById(R.id.back);
         text=(TextView)findViewById(R.id.eje);
         tamano=(Slider) findViewById(R.id.slider1);
         swi=(Switch)findViewById(R.id.sw1th);
@@ -101,7 +103,7 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
         editor.commit();
 
         back.setBackgroundColor(Color.parseColor(cl1));
-        Elimi.setBackgroundColor(Color.parseColor(cl2));
+        //Elimi.setBackgroundColor(Color.parseColor(cl2));
     }
 
     public void cargar(){
@@ -129,8 +131,10 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.eliminar:
-
                 eliminardata();
+                break;
+            case R.id.eliminarMed:
+                eliminardata2();
                 break;
 
         }
@@ -146,7 +150,35 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(getApplicationContext(), "Eliminando Datos", Toast.LENGTH_SHORT).show();
                 Eliminar();
+                Eliminarecordatorio();
                 Intent eli = new Intent(Configuracion.this, Carga.class);
+                startActivity(eli);
+                finish();
+            }
+        });
+        builder.setNegativeButton("No Eliminar Datos", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        //Toast.makeText(getApplicationContext(), "Eliminacion", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void eliminardata2() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("¿Eliminar todos los recordatorios?").setTitle("Recordatorios");
+
+        builder.setPositiveButton("Si, Eliminar recordatorios", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Eliminarecordatorio();
+                Toast.makeText(getApplicationContext(), "Eliminando Recordatorios", Toast.LENGTH_SHORT).show();
+                Intent eli = new Intent(Configuracion.this, Carga2.class);
                 startActivity(eli);
                 finish();
             }
@@ -167,6 +199,12 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
     public void Eliminar() {
         SharedPreferences.Editor editor = getSharedPreferences("Credenciales", Context.MODE_PRIVATE).edit();
         editor.clear().apply();
+
+    }
+    public void Eliminarecordatorio() {
+
+        SharedPreferences.Editor medicamentoBDD = getSharedPreferences("MedicamentoBDD", Context.MODE_PRIVATE).edit();
+        medicamentoBDD.clear().apply();
 
     }
 }
