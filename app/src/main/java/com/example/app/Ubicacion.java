@@ -40,13 +40,13 @@ public class Ubicacion implements LocationListener {
             Location location= locationManager.getLastKnownLocation(provedor);
             if(location!=null){
                 StringBuilder builder=new StringBuilder();
-                builder.append(location.getLatitude()).append(",").append(location.getLongitude()).append(getLocation());
-                //Toast.makeText(ctx.getApplicationContext(), builder.toString(),Toast.LENGTH_LONG).show();
+                builder.append(location.getLatitude()).append(",").append(location.getLongitude());
+                Toast.makeText(ctx.getApplicationContext(), builder.toString(),Toast.LENGTH_LONG).show();
                 SharedPreferences preferencias = ctx.getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferencias.edit();
-                editor.putString("Ubicacion", builder.toString());
+                editor.putString("Ub", builder.toString());
                 editor.commit();
-                Toast.makeText(ctx.getApplicationContext(),"ACTULIZANDO UBICACION",Toast.LENGTH_LONG).show();
+                //Toast.makeText(ctx.getApplicationContext(),"ACTULIZANDO UBICACION",Toast.LENGTH_LONG).show();
             }
         }
         return ubi;
@@ -54,6 +54,6 @@ public class Ubicacion implements LocationListener {
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-
+        getLocation();
     }
 }

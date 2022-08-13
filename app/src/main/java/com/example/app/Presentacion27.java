@@ -170,7 +170,7 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         String usuariot = preferencias.getString("Nombret", "No Existe la informacion");
         String apellit = preferencias.getString("Apellidot", "No Existe la informacion");
         String numbert = preferencias.getString("Numerot", "No Existe la informacion");
-        String ub = preferencias.getString("Ubicacion", "No hay info de GPS");
+        String ub = preferencias.getString("Ub", "No hay info de GPS");
         enviarMensaje(numbert, "¡¡¡EMERGENCIA!!!\nTu familiar " + usuario +" se encuentra en riesgo,por favor comunicate con él, en caso de que no conteste llama a emergencias.");
         //Toast.makeText(this,ub,Toast.LENGTH_LONG).show();
         enviarMensaje(numbert,"La encuentras en:"+"\n\nhttps://maps.google.com/?q="+ub);
