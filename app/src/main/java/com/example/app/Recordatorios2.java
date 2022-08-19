@@ -72,15 +72,22 @@ public class Recordatorios2 extends AppCompatActivity implements View.OnClickLis
         String id = preferencias.getString("ID", "0");
         int v=Integer.parseInt(id);
 
+        SharedPreferences preferencias1 = getSharedPreferences("nombremed", Context.MODE_PRIVATE);
+        SharedPreferences preferencias2 = getSharedPreferences("tiempo", Context.MODE_PRIVATE);
+        SharedPreferences preferencias3 = getSharedPreferences("tiempo2", Context.MODE_PRIVATE);
+        SharedPreferences preferencias4 = getSharedPreferences("cantidad", Context.MODE_PRIVATE);
+        SharedPreferences preferencias5 = getSharedPreferences("cantidadt", Context.MODE_PRIVATE);
+
+
         while (j<v){
             j++;
             String a=Integer.toString(j);
 
-            String Nom = preferencias.getString(a, "");
-            String Tie = preferencias.getString(Nom, "");
-            String Tom = preferencias.getString(Tie, "");
-            String Medi = preferencias.getString(Tom, "");
-            String Can = preferencias.getString(Medi, "");
+            String Nom = preferencias1.getString(a, "");
+            String Tie = preferencias2.getString(Nom, "");
+            String Tom = preferencias3.getString(Nom, "");
+            String Medi= preferencias4.getString(Nom, "");
+            String Can = preferencias5.getString(Nom, "");
 
             if(Nom==""&&Tie==""&&Tom==""&&Medi==""&&Can==""){
                 NombMedicamemto2.remove(Nom);

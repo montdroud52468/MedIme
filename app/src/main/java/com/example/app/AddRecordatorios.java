@@ -198,6 +198,11 @@ public class AddRecordatorios extends AppCompatActivity {
 
     private void guardarDatos() {
         SharedPreferences preferencias = getSharedPreferences("MedicamentoBDD", Context.MODE_PRIVATE);
+        SharedPreferences preferencias1 = getSharedPreferences("nombremed", Context.MODE_PRIVATE);
+        SharedPreferences preferencias2 = getSharedPreferences("tiempo", Context.MODE_PRIVATE);
+        SharedPreferences preferencias3 = getSharedPreferences("tiempo2", Context.MODE_PRIVATE);
+        SharedPreferences preferencias4 = getSharedPreferences("cantidad", Context.MODE_PRIVATE);
+        SharedPreferences preferencias5 = getSharedPreferences("cantidadt", Context.MODE_PRIVATE);
         String ID = preferencias.getString("ID", "0");
         int id=Integer.parseInt(ID);
         id=id+1;
@@ -209,16 +214,30 @@ public class AddRecordatorios extends AppCompatActivity {
         String cantMed=cantMT.getText().toString();
         
         ID=Integer.toString(id);
+
         SharedPreferences.Editor editor = preferencias.edit();
-
         editor.putString("ID", ID);
-        editor.putString(ID, nomMed);
-        editor.putString(nomMed, tieMed);
-        editor.putString(tieMed, canMed);
-        editor.putString(canMed, canmed);
-        editor.putString(canmed, cantMed);
-
         editor.commit();
+
+        SharedPreferences.Editor editor1 = preferencias1.edit();
+        editor1.putString(ID, nomMed);
+        editor1.commit();
+
+        SharedPreferences.Editor editor2 = preferencias2.edit();
+        editor2.putString(nomMed, tieMed);
+        editor2.commit();
+
+        SharedPreferences.Editor editor3 = preferencias3.edit();
+        editor3.putString(nomMed, canMed);
+        editor3.commit();
+
+        SharedPreferences.Editor editor4 = preferencias4.edit();
+        editor4.putString(nomMed, canmed);
+        editor4.commit();
+
+        SharedPreferences.Editor editor5 = preferencias5.edit();
+        editor5.putString(nomMed, cantMed);
+        editor5.commit();
 
     }
 

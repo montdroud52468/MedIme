@@ -47,12 +47,18 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
     private void cargarDatos() {
         SharedPreferences preferencias = getSharedPreferences("MedicamentoBDD", Context.MODE_PRIVATE);
         dato=getIntent().getStringExtra("ResID");
-        SharedPreferences preferencias2 = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
-        String Tie = preferencias.getString(dato, "No Existe la informacion");
-        String Tom = preferencias.getString(Tie, "No Existe la informacion");
-        String Medi = preferencias.getString(Tom, "No Existe la informacion");
-        String Can = preferencias.getString(Medi, "No Existe la informacion");
-        float tam = preferencias2.getFloat("Tamanio",15);
+        SharedPreferences preferenciast = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
+        SharedPreferences preferencias1 = getSharedPreferences("nombremed", Context.MODE_PRIVATE);
+        SharedPreferences preferencias2 = getSharedPreferences("tiempo", Context.MODE_PRIVATE);
+        SharedPreferences preferencias3 = getSharedPreferences("tiempo2", Context.MODE_PRIVATE);
+        SharedPreferences preferencias4 = getSharedPreferences("cantidad", Context.MODE_PRIVATE);
+        SharedPreferences preferencias5 = getSharedPreferences("cantidadt", Context.MODE_PRIVATE);
+
+        String Tie = preferencias2.getString(dato, "No Existe la informacion");
+        String Tom = preferencias3.getString(dato, "No Existe la informacion");
+        String Medi = preferencias4.getString(dato, "No Existe la informacion");
+        String Can = preferencias5.getString(dato, "No Existe la informacion");
+        float tam = preferenciast.getFloat("Tamanio",15);
 
         res1n.setEnabled(false);
         res2n.setEnabled(false);
@@ -101,26 +107,42 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         res5n.setEnabled(false);
 
         SharedPreferences preferencias = getSharedPreferences("MedicamentoBDD", Context.MODE_PRIVATE);
+        SharedPreferences preferencias1 = getSharedPreferences("nombremed", Context.MODE_PRIVATE);
+        SharedPreferences preferencias2 = getSharedPreferences("tiempo", Context.MODE_PRIVATE);
+        SharedPreferences preferencias3 = getSharedPreferences("tiempo2", Context.MODE_PRIVATE);
+        SharedPreferences preferencias4 = getSharedPreferences("cantidad", Context.MODE_PRIVATE);
+        SharedPreferences preferencias5 = getSharedPreferences("cantidadt", Context.MODE_PRIVATE);
 
-        String uno= res1n.getText().toString();
+        String uno = res1n.getText().toString();
         String dos = res2n.getText().toString();
         String tres = res3n.getText().toString();
         String cuatro = res4n.getText().toString();
         String cinco = res5n.getText().toString();
 
         SharedPreferences.Editor editor = preferencias.edit();
+        SharedPreferences.Editor editor1 = preferencias1.edit();
+        SharedPreferences.Editor editor2 = preferencias2.edit();
+        SharedPreferences.Editor editor3 = preferencias3.edit();
+        SharedPreferences.Editor editor4 = preferencias4.edit();
+        SharedPreferences.Editor editor5 = preferencias5.edit();
 
-        editor.remove(dos);
-        editor.remove(tres);
-        editor.remove(cuatro);
-        editor.remove(cinco);
+        editor2.remove(dos);
+        editor3.remove(tres);
+        editor4.remove(cuatro);
+        editor5.remove(cinco);
 
-        editor.putString(uno, dos);
-        editor.putString(dos, tres);
-        editor.putString(tres, cuatro);
-        editor.putString(cuatro, cinco);
+        editor2.putString(uno, dos);
+        editor3.putString(uno, tres);
+        editor4.putString(uno, cuatro);
+        editor5.putString(uno, cinco);
 
         editor.commit();
+        editor1.commit();
+        editor2.commit();
+        editor3.commit();
+        editor4.commit();
+        editor5.commit();
+
 
     }
 

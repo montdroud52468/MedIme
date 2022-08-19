@@ -205,6 +205,16 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
 
         SharedPreferences.Editor medicamentoBDD = getSharedPreferences("MedicamentoBDD", Context.MODE_PRIVATE).edit();
         medicamentoBDD.clear().apply();
+        SharedPreferences.Editor nombre = getSharedPreferences("nombremed", Context.MODE_PRIVATE).edit();
+        nombre.clear().apply();
+        SharedPreferences.Editor tiempo = getSharedPreferences("tiempo", Context.MODE_PRIVATE).edit();
+        tiempo.clear().apply();
+        SharedPreferences.Editor tiempo2 = getSharedPreferences("tiempo2", Context.MODE_PRIVATE).edit();
+        tiempo2.clear().apply();
+        SharedPreferences.Editor cantidad = getSharedPreferences("cantidad", Context.MODE_PRIVATE).edit();
+        cantidad.clear().apply();
+        SharedPreferences.Editor cantidadt = getSharedPreferences("cantidadt", Context.MODE_PRIVATE).edit();
+        cantidadt.clear().apply();
 
     }
 }
