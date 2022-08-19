@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
     EditText res1n,res2n,res3n,res4n,res5n;
     CardView card1,card2,card3;
     String dato,id;
+    TextView fe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         card1=(CardView)findViewById(R.id.EditarResNot);
         card2=(CardView)findViewById(R.id.EliminarResNot);
         card3=(CardView)findViewById(R.id.GuardarResNot);
+        fe=(TextView)findViewById(R.id.textView);
 
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
@@ -53,11 +56,14 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         SharedPreferences preferencias3 = getSharedPreferences("tiempo2", Context.MODE_PRIVATE);
         SharedPreferences preferencias4 = getSharedPreferences("cantidad", Context.MODE_PRIVATE);
         SharedPreferences preferencias5 = getSharedPreferences("cantidadt", Context.MODE_PRIVATE);
+        SharedPreferences preferencias6 = getSharedPreferences("fecha", Context.MODE_PRIVATE);
+        SharedPreferences preferencias7 = getSharedPreferences("fechaf", Context.MODE_PRIVATE);
 
         String Tie = preferencias2.getString(dato, "No Existe la informacion");
         String Tom = preferencias3.getString(dato, "No Existe la informacion");
         String Medi = preferencias4.getString(dato, "No Existe la informacion");
         String Can = preferencias5.getString(dato, "No Existe la informacion");
+        String fecha= preferencias7.getString(dato,"");
         float tam = preferenciast.getFloat("Tamanio",15);
 
         res1n.setEnabled(false);
@@ -66,17 +72,20 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         res4n.setEnabled(false);
         res5n.setEnabled(false);
 
+
         res1n.setTextSize(tam);
         res2n.setTextSize(tam);
         res3n.setTextSize(tam);
         res4n.setTextSize(tam);
         res5n.setTextSize(tam);
+        //fe.setTextSize(tam);
 
         res1n.setText(dato);
         res2n.setText(Tie);
         res3n.setText(Tom);
         res4n.setText(Medi);
         res5n.setText(Can);
+        fe.setText("La proxima dosis es el dia "+fecha+" horas");
 
     }
 

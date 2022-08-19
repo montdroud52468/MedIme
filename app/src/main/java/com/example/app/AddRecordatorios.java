@@ -2,19 +2,24 @@ package com.example.app;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.Time;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -203,6 +208,9 @@ public class AddRecordatorios extends AppCompatActivity {
         SharedPreferences preferencias3 = getSharedPreferences("tiempo2", Context.MODE_PRIVATE);
         SharedPreferences preferencias4 = getSharedPreferences("cantidad", Context.MODE_PRIVATE);
         SharedPreferences preferencias5 = getSharedPreferences("cantidadt", Context.MODE_PRIVATE);
+        SharedPreferences preferencias6 = getSharedPreferences("fecha", Context.MODE_PRIVATE);
+        SharedPreferences preferencias7 = getSharedPreferences("fechaf", Context.MODE_PRIVATE);
+
         String ID = preferencias.getString("ID", "0");
         int id=Integer.parseInt(ID);
         id=id+1;
@@ -212,8 +220,8 @@ public class AddRecordatorios extends AppCompatActivity {
         String canMed=cadMT.getText().toString();
         String canmed=canMT.getText().toString();
         String cantMed=cantMT.getText().toString();
-        
         ID=Integer.toString(id);
+
 
         SharedPreferences.Editor editor = preferencias.edit();
         editor.putString("ID", ID);
@@ -238,6 +246,25 @@ public class AddRecordatorios extends AppCompatActivity {
         SharedPreferences.Editor editor5 = preferencias5.edit();
         editor5.putString(nomMed, cantMed);
         editor5.commit();
+
+        int i=Integer.parseInt(canMed);
+
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("EEEE, dd MMMM yyyy hh:mm:ss", Locale.getDefault());
+        Calendar ahora = Calendar.getInstance();
+        Date fechaActual = ahora.getTime();
+        String fechai=formatoFecha.format(fechaActual);
+        ahora.add(Calendar.HOUR, i);
+        Date fechamod = ahora.getTime();
+        String fechaf=formatoFecha.format(fechamod);
+
+
+        SharedPreferences.Editor editor6 = preferencias6.edit();
+        editor6.putString(nomMed, fechai);
+        editor6.commit();
+
+        SharedPreferences.Editor editor7 = preferencias7.edit();
+        editor7.putString(nomMed, fechaf);
+        editor7.commit();
 
     }
 
