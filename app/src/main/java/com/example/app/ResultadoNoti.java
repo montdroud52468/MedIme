@@ -64,6 +64,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         String Medi = preferencias4.getString(dato, "No Existe la informacion");
         String Can = preferencias5.getString(dato, "No Existe la informacion");
         String fecha= preferencias7.getString(dato,"");
+        String fechaf=preferencias6.getString(dato,"");
         float tam = preferenciast.getFloat("Tamanio",15);
 
         res1n.setEnabled(false);
@@ -85,7 +86,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         res3n.setText(Tom);
         res4n.setText(Medi);
         res5n.setText(Can);
-        fe.setText("La proxima dosis es el dia "+fecha+" horas");
+        fe.setText("La ultima docis fue el "+fechaf+"\n"+"La proxima dosis es el dia "+fecha+" horas");
 
     }
 

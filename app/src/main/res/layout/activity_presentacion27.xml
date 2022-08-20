@@ -177,7 +177,7 @@
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/edit_person_negro"/>
+                                android:src="@drawable/edit_negro"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:id="@+id/txtinfo"

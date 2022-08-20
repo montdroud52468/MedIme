@@ -257,6 +257,21 @@ public class AddRecordatorios extends AppCompatActivity {
         Date fechamod = ahora.getTime();
         String fechaf=formatoFecha.format(fechamod);
 
+        SimpleDateFormat dia = new SimpleDateFormat("dd", Locale.getDefault());
+        SimpleDateFormat mes = new SimpleDateFormat("MM", Locale.getDefault());
+        SimpleDateFormat anio = new SimpleDateFormat("yyyy", Locale.getDefault());
+        SimpleDateFormat hora = new SimpleDateFormat("hh", Locale.getDefault());
+        SimpleDateFormat minuto = new SimpleDateFormat("mm", Locale.getDefault());
+
+        String diaa=dia.format(fechamod);
+        String mesm=mes.format(fechamod);
+        String anioa=anio.format(fechamod);
+        String horah=hora.format(fechamod);
+        String minutom=minuto.format(fechamod);
+
+
+        Toast.makeText(this,"Dia: "+diaa+" Mes: "+mesm+" Año: "+anioa,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,horah+":"+minutom+" horas",Toast.LENGTH_LONG).show();
 
         SharedPreferences.Editor editor6 = preferencias6.edit();
         editor6.putString(nomMed, fechai);
