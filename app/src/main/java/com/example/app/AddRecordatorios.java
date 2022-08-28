@@ -2,20 +2,35 @@ package com.example.app;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.FileProvider;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,11 +40,14 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class AddRecordatorios extends AppCompatActivity {
 
-
-    EditText        nommT,tieMT,canMT,cantMT,cadMT;
+    CardView cam,Rec;
+    EditText nommT,tieMT,canMT,cantMT,cadMT;
     TextInputLayout nomM,tieM,canM,cantM,cadM;
     AutoCompleteTextView spi;
-    Button Rec;
+    TextView texto;
+    GridLayout cama,guar;
+    ImageView imageView,imageView2;
+    String rutaImagen;
     int j=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +67,20 @@ public class AddRecordatorios extends AppCompatActivity {
         canM   = (TextInputLayout) findViewById(R.id.CanMedT);
         cantM   = (TextInputLayout) findViewById(R.id.CantMedT);
 
+        texto=(TextView)findViewById(R.id.Textofoto);
+
+        imageView2=(ImageView)findViewById(R.id.cam2);
+
         spi   = (AutoCompleteTextView) findViewById(R.id.TipoMed);
-        Rec=(Button)findViewById(R.id.GuarMed);
+
+        Rec=(CardView) findViewById(R.id.GuarMed);
+        cam = (CardView)findViewById(R.id.camara);
+
+        cama=(GridLayout)findViewById(R.id.gridcam);
+        guar=(GridLayout)findViewById(R.id.gridgua);
+
+        cam.setOnClickListener(this::onclickaddRec);
+        Rec.setOnClickListener(this::onclickaddRec);
 
         String[] tam={"Pastillas","Pomadas","Jarabes","Inyecciones","Multiples"};
         ArrayAdapter<String> adapter =new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line, tam);
@@ -96,7 +126,8 @@ public class AddRecordatorios extends AppCompatActivity {
             cadM.setVisibility(View.VISIBLE);
             canM.setVisibility(View.VISIBLE);
             cantM.setVisibility(View.VISIBLE);
-
+            cama.setVisibility(View.VISIBLE);
+            guar.setVisibility(View.VISIBLE);
             spi.setVisibility(View.VISIBLE);
             Rec.setVisibility(View.VISIBLE);
         }
@@ -114,7 +145,8 @@ public class AddRecordatorios extends AppCompatActivity {
             cadM.setVisibility(View.VISIBLE);
             canM.setVisibility(View.GONE);
             cantM.setVisibility(View.GONE);
-
+            cama.setVisibility(View.VISIBLE);
+            guar.setVisibility(View.VISIBLE);
             spi.setVisibility(View.VISIBLE);
             Rec.setVisibility(View.VISIBLE);
         }
@@ -131,7 +163,8 @@ public class AddRecordatorios extends AppCompatActivity {
             cadM.setVisibility(View.VISIBLE);
             canM.setVisibility(View.VISIBLE);
             cantM.setVisibility(View.VISIBLE);
-
+            cama.setVisibility(View.VISIBLE);
+            guar.setVisibility(View.VISIBLE);
             spi.setVisibility(View.VISIBLE);
             Rec.setVisibility(View.VISIBLE);
         }
@@ -148,7 +181,8 @@ public class AddRecordatorios extends AppCompatActivity {
             cadM.setVisibility(View.VISIBLE);
             canM.setVisibility(View.GONE);
             cantM.setVisibility(View.VISIBLE);
-
+            cama.setVisibility(View.VISIBLE);
+            guar.setVisibility(View.VISIBLE);
             spi.setVisibility(View.VISIBLE);
             Rec.setVisibility(View.VISIBLE);
         }
@@ -160,11 +194,12 @@ public class AddRecordatorios extends AppCompatActivity {
                 guardarDatos();
                 Intent intent = new Intent(this, Presentacion27.class);
                 startActivity(intent);
+                finish();
                 break;
-            case R.id.CargMed:
-                cargarDatos();
+            case R.id.camara:
+                Toast.makeText(this,"camara",Toast.LENGTH_LONG).show();
+                camara();
                 break;
-
         }
     }
 
@@ -201,6 +236,44 @@ public class AddRecordatorios extends AppCompatActivity {
 
     }
 
+    private void camara(){
+        Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(intent.resolveActivity(getPackageManager())!=null){
+            File imagenArchivo=null;
+            try {
+                imagenArchivo=crearImagen();
+            }catch (IOException ex){
+                Log.e("Error",ex.toString());
+            }
+
+            if(imagenArchivo!=null){
+                Uri fotoUri= FileProvider.getUriForFile(this,"com.example.app.fileprovider",imagenArchivo);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,fotoUri);
+                startActivityForResult(intent,1);
+            }
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            //Bundle extras = data.getExtras();
+            Bitmap img = BitmapFactory.decodeFile(rutaImagen);//(Bitmap) extras.get("data");
+            texto.setText("TOCA PARA CAMBIAR LA FOTO");
+            imageView2.setImageBitmap(img);
+            imageView2.setVisibility(View.VISIBLE);
+            texto.setVisibility(View.GONE);
+        }
+    }
+
+    private File crearImagen() throws IOException {
+        String nombreIm="foto_";
+        File directorio=getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File imagen=File.createTempFile(nombreIm,".jpg",directorio);
+        rutaImagen=imagen.getAbsolutePath();
+        return imagen;
+    }
+
     private void guardarDatos() {
         SharedPreferences preferencias = getSharedPreferences("MedicamentoBDD", Context.MODE_PRIVATE);
         SharedPreferences preferencias1 = getSharedPreferences("nombremed", Context.MODE_PRIVATE);
@@ -210,6 +283,7 @@ public class AddRecordatorios extends AppCompatActivity {
         SharedPreferences preferencias5 = getSharedPreferences("cantidadt", Context.MODE_PRIVATE);
         SharedPreferences preferencias6 = getSharedPreferences("fecha", Context.MODE_PRIVATE);
         SharedPreferences preferencias7 = getSharedPreferences("fechaf", Context.MODE_PRIVATE);
+        SharedPreferences preferencias8 = getSharedPreferences("imagen", Context.MODE_PRIVATE);
 
         String ID = preferencias.getString("ID", "0");
         int id=Integer.parseInt(ID);
@@ -249,7 +323,7 @@ public class AddRecordatorios extends AppCompatActivity {
 
         int i=Integer.parseInt(canMed);
 
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("EEEE, dd MMMM yyyy hh:mm:ss", Locale.getDefault());
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("EEEE, dd MMMM yyyy hh:mm aaa", Locale.getDefault());
         Calendar ahora = Calendar.getInstance();
         Date fechaActual = ahora.getTime();
         String fechai=formatoFecha.format(fechaActual);
@@ -270,8 +344,6 @@ public class AddRecordatorios extends AppCompatActivity {
         String minutom=minuto.format(fechamod);
 
 
-        Toast.makeText(this,"Dia: "+diaa+" Mes: "+mesm+" Año: "+anioa,Toast.LENGTH_LONG).show();
-        Toast.makeText(this,horah+":"+minutom+" horas",Toast.LENGTH_LONG).show();
 
         SharedPreferences.Editor editor6 = preferencias6.edit();
         editor6.putString(nomMed, fechai);
@@ -280,6 +352,10 @@ public class AddRecordatorios extends AppCompatActivity {
         SharedPreferences.Editor editor7 = preferencias7.edit();
         editor7.putString(nomMed, fechaf);
         editor7.commit();
+
+        SharedPreferences.Editor editor8 = preferencias8.edit();
+        editor8.putString(nomMed, rutaImagen);
+        editor8.commit();
 
     }
 

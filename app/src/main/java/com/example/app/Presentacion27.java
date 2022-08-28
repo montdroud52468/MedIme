@@ -114,6 +114,7 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
                 editor.putInt("Pase", 2);
                 editor.commit();
                 Intent edi = new Intent(Presentacion27.this, Carga.class);
+                finish();
                 startActivity(edi);
                 break;
             case R.id.tres:

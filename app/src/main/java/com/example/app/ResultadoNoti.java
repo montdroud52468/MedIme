@@ -3,11 +3,15 @@ package com.example.app;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,16 +24,18 @@ import java.security.PrivilegedExceptionAction;
 public class ResultadoNoti extends AppCompatActivity implements View.OnClickListener{
 
     EditText res1n,res2n,res3n,res4n,res5n;
-    CardView card1,card2,card3;
+    CardView card1,card2,card3,resimag;
     String dato,id;
     TextView fe;
+    ImageView imagen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_resultado_noti);
         dato=getIntent().getStringExtra("ResID");
-        this.setTitle("RECORDATORIO "+dato);
+        this.setTitle("RECORDATORIO "+dato.toUpperCase());
         res1n=(EditText)findViewById(R.id.NomMedRes);
         res2n=(EditText)findViewById(R.id.TieMediRes);
         res3n=(EditText)findViewById(R.id.CanMediRes);
@@ -39,10 +45,14 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         card2=(CardView)findViewById(R.id.EliminarResNot);
         card3=(CardView)findViewById(R.id.GuardarResNot);
         fe=(TextView)findViewById(R.id.textView);
+        imagen=(ImageView)findViewById(R.id.ima);
+        resimag=(CardView)findViewById(R.id.cardimag);
 
+        resimag.setOnClickListener(this);
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
         card3.setOnClickListener(this);
+
 
         cargarDatos();
     }
@@ -58,6 +68,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         SharedPreferences preferencias5 = getSharedPreferences("cantidadt", Context.MODE_PRIVATE);
         SharedPreferences preferencias6 = getSharedPreferences("fecha", Context.MODE_PRIVATE);
         SharedPreferences preferencias7 = getSharedPreferences("fechaf", Context.MODE_PRIVATE);
+        SharedPreferences preferencias8 = getSharedPreferences("imagen", Context.MODE_PRIVATE);
 
         String Tie = preferencias2.getString(dato, "No Existe la informacion");
         String Tom = preferencias3.getString(dato, "No Existe la informacion");
@@ -65,7 +76,11 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         String Can = preferencias5.getString(dato, "No Existe la informacion");
         String fecha= preferencias7.getString(dato,"");
         String fechaf=preferencias6.getString(dato,"");
+        String ima=preferencias8.getString(dato,"");
         float tam = preferenciast.getFloat("Tamanio",15);
+
+        Bitmap img = BitmapFactory.decodeFile(ima);
+        imagen.setImageBitmap(img);
 
         res1n.setEnabled(false);
         res2n.setEnabled(false);
@@ -86,7 +101,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         res3n.setText(Tom);
         res4n.setText(Medi);
         res5n.setText(Can);
-        fe.setText("La ultima docis fue el "+fechaf+"\n"+"La proxima dosis es el dia "+fecha+" horas");
+        fe.setText("La ultima docis fue el "+fechaf+"\n"+"La proxima dosis es el dia "+fecha);
 
     }
 
@@ -95,6 +110,11 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.cardimag:
+                Intent nu=new Intent(ResultadoNoti.this,Imagen.class);
+                nu.putExtra("datodir",dato);
+                startActivity(nu);
+                break;
             case R.id.EditarResNot:
                 Editar();
                 break;
@@ -152,8 +172,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         editor3.commit();
         editor4.commit();
         editor5.commit();
-
-
+        finish();
     }
 
     private void Elimina() {

@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".AddRecordatorios"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".AddRecordatorios">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,122 +33,201 @@
 
     </LinearLayout>
 
+    <GridLayout
+        android:id="@+id/gridcam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:columnCount="1"
+        android:rowCount="1"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/camara"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_rowWeight="0"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="9dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:visibility="gone"
+                    android:id="@+id/cam2"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_baseline_photo_camera_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="80dp"
+                    android:text="TOMAR FOTO DEL MEDICAMENTO"
+                    android:textAlignment="center"
+                    android:id="@+id/Textofoto"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </GridLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/NomMedT"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="nombre"
-        app:boxBackgroundMode="outline"
         android:visibility="gone"
-        android:id="@+id/NomMedT"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperText="Ejemplo Doclofenaco, Paracetamol, Etc."
+        app:boxBackgroundMode="outline"
         app:counterEnabled="true"
         app:endIconMode="clear_text"
+        app:helperText="Ejemplo Doclofenaco, Paracetamol, Etc."
         app:startIconDrawable="@drawable/favorite_negro">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/NomMed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/NomMed"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TimMedT"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tiempo del medicamento"
+        android:visibility="gone"
         app:boxBackgroundMode="outline"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperText="Cuanto tiempo estaras medicandote en semanas"
         app:counterEnabled="true"
         app:endIconMode="clear_text"
-        android:visibility="gone"
-        android:id="@+id/TimMedT"
+        app:helperText="Cuanto tiempo estaras medicandote en semanas"
         app:startIconDrawable="@drawable/favorite_negro">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/TimMed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/TimMed"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TomMedT"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Cada cuando toma medicamento"
+        android:visibility="gone"
         app:boxBackgroundMode="outline"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperText="Tus ciclos de tomado, cada 8hrs etc."
         app:counterEnabled="true"
         app:endIconMode="clear_text"
-        android:visibility="gone"
-        android:id="@+id/TomMedT"
+        app:helperText="Tus ciclos de tomado, cada 8hrs etc."
         app:startIconDrawable="@drawable/favorite_negro">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/TomMed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="time"
-            android:id="@+id/TomMed"/>
+            android:inputType="time" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/CanMedT"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Cantidad de medicamento a tomar"
+        android:visibility="gone"
         app:boxBackgroundMode="outline"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperText="Por cada ciclo cuantas pastillas tomas 1 pastilla"
         app:counterEnabled="true"
         app:endIconMode="clear_text"
-        android:visibility="gone"
-        android:id="@+id/CanMedT"
+        app:helperText="Por cada ciclo cuantas pastillas tomas 1 pastilla"
         app:startIconDrawable="@drawable/favorite_negro">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/CanMed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/CanMed"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/CantMedT"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Cantidad total del medicamento"
+        android:visibility="gone"
         app:boxBackgroundMode="outline"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:helperText="Medicamento total 30 capsulas de Diclofenaco"
         app:counterEnabled="true"
         app:endIconMode="clear_text"
-        android:visibility="gone"
-        android:id="@+id/CantMedT"
+        app:helperText="Medicamento total 30 capsulas de Diclofenaco"
         app:startIconDrawable="@drawable/favorite_negro">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/CantMed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/CantMed"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <Button
-        android:id="@+id/GuarMed"
+    <GridLayout
+        android:id="@+id/gridgua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="onclickaddRec"
-        android:visibility="gone"
-        android:text="Recordar medicamento"
-        app:cornerRadius="20dp" />
-    <Button
-        android:id="@+id/CargMed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="onclickaddRec"
-        android:visibility="gone"
-        android:text="Cargar"
-        app:cornerRadius="20dp" />
+        android:layout_below="@id/title"
+        android:columnCount="1"
+        android:rowCount="1"
+        android:visibility="gone">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/GuarMed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_rowWeight="0"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="9dp"
+            app:cardElevation="8dp">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_baseline_save_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GUARDAR MEDICAMENTO"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </GridLayout>
+
+    <ImageView
+        android:id="@+id/foto"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

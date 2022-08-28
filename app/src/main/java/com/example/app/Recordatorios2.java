@@ -43,7 +43,7 @@ public class Recordatorios2 extends AppCompatActivity implements View.OnClickLis
         lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),"Nombre: "+lv1.getItemAtPosition(i)+"\nTiempo: "+ TiemMedicamento2.get(i),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"CARGANDO...",Toast.LENGTH_SHORT).show();
                 Intent resNot = new Intent(Recordatorios2.this, ResultadoNoti.class);
                 resNot.putExtra("ResID", (String) lv1.getItemAtPosition(i));
                 int val=1+i;
@@ -63,6 +63,7 @@ public class Recordatorios2 extends AppCompatActivity implements View.OnClickLis
                 //Toast.makeText(getApplicationContext(), "Agregar Recordatorio", Toast.LENGTH_SHORT).show();
                 Intent agregar = new Intent(Recordatorios2.this, AddRecordatorios.class);
                 startActivity(agregar);
+                finish();
                 break;
         }
     }
