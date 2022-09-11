@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="15dp"
-                android:text=" Aqui ira la informacion que necesitamos o la razon por la cual pedimos esta informacion"
+                android:text="@string/Informacion"
                 android:textSize="16dp" />
 
             <Switch

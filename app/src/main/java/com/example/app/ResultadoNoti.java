@@ -19,6 +19,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.security.PrivilegedExceptionAction;
 
 public class ResultadoNoti extends AppCompatActivity implements View.OnClickListener{
@@ -28,6 +30,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
     String dato,id;
     TextView fe;
     ImageView imagen;
+    TextInputLayout r1,r2,r3,r4,r5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,11 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         fe=(TextView)findViewById(R.id.textView);
         imagen=(ImageView)findViewById(R.id.ima);
         resimag=(CardView)findViewById(R.id.cardimag);
+        r1=(TextInputLayout)findViewById(R.id.R1);
+        r2=(TextInputLayout)findViewById(R.id.R2);
+        r3=(TextInputLayout)findViewById(R.id.R3);
+        r4=(TextInputLayout)findViewById(R.id.R4);
+        r5=(TextInputLayout)findViewById(R.id.R5);
 
         resimag.setOnClickListener(this);
         card1.setOnClickListener(this);
@@ -69,6 +77,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         SharedPreferences preferencias6 = getSharedPreferences("fecha", Context.MODE_PRIVATE);
         SharedPreferences preferencias7 = getSharedPreferences("fechaf", Context.MODE_PRIVATE);
         SharedPreferences preferencias8 = getSharedPreferences("imagen", Context.MODE_PRIVATE);
+        SharedPreferences preferencias9 = getSharedPreferences("tipoMedicamentoDB", Context.MODE_PRIVATE);
 
         String Tie = preferencias2.getString(dato, "No Existe la informacion");
         String Tom = preferencias3.getString(dato, "No Existe la informacion");
@@ -77,17 +86,18 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         String fecha= preferencias7.getString(dato,"");
         String fechaf=preferencias6.getString(dato,"");
         String ima=preferencias8.getString(dato,"");
+        String tipo=preferencias9.getString(dato,"");
+
+        Toast.makeText(this,"El tipo de medicamento es: "+tipo,Toast.LENGTH_LONG).show();
+
         float tam = preferenciast.getFloat("Tamanio",15);
-
-        Bitmap img = BitmapFactory.decodeFile(ima);
-        imagen.setImageBitmap(img);
-
-        res1n.setEnabled(false);
-        res2n.setEnabled(false);
-        res3n.setEnabled(false);
-        res4n.setEnabled(false);
-        res5n.setEnabled(false);
-
+        if(ima==""){
+            resimag.setVisibility(View.GONE);
+        }else{
+            resimag.setVisibility(View.VISIBLE);
+            Bitmap img = BitmapFactory.decodeFile(ima);
+            imagen.setImageBitmap(img);
+        }
 
         res1n.setTextSize(tam);
         res2n.setTextSize(tam);
@@ -102,6 +112,46 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         res4n.setText(Medi);
         res5n.setText(Can);
         fe.setText("La ultima docis fue el "+fechaf+"\n"+"La proxima dosis es el dia "+fecha);
+
+
+        res1n.setEnabled(false);
+        res2n.setEnabled(false);
+        res3n.setEnabled(false);
+        res4n.setEnabled(false);
+        res5n.setEnabled(false);
+
+
+        r1.setVisibility(View.GONE);
+        r2.setVisibility(View.GONE);
+        r3.setVisibility(View.GONE);
+        r4.setVisibility(View.GONE);
+        r5.setVisibility(View.GONE);
+
+        if(dato==""){
+            r1.setVisibility(View.GONE);
+        }else{
+            r1.setVisibility(View.VISIBLE);
+        }
+        if(Tie==""){
+            r2.setVisibility(View.GONE);
+        }else{
+            r2.setVisibility(View.VISIBLE);
+        }
+        if(Tom==""){
+            r3.setVisibility(View.GONE);
+        }else{
+            r3.setVisibility(View.VISIBLE);
+        }
+        if(Medi==""){
+            r4.setVisibility(View.GONE);
+        }else{
+            r4.setVisibility(View.VISIBLE);
+        }
+        if(Can==""){
+            r5.setVisibility(View.GONE);
+        }else{
+            r5.setVisibility(View.VISIBLE);
+        }
 
     }
 

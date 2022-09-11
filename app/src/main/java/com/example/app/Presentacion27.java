@@ -104,8 +104,8 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()) {
             case R.id.uno:
                 //Toast.makeText(getApplicationContext(), "Todos los Recordatorios", Toast.LENGTH_SHORT).show();
-                Intent agre = new Intent(Presentacion27.this, Recordatorios2.class);
-                startActivity(agre);
+                Intent activity = new Intent(Presentacion27.this, Recordatorios2.class);
+                startActivity(activity);
                 break;
             case R.id.dos:
                 //Toast.makeText(getApplicationContext(), "Cargando datos del usuario", Toast.LENGTH_SHORT).show();
@@ -113,17 +113,19 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
                 SharedPreferences.Editor editor = preferencias.edit();
                 editor.putInt("Pase", 2);
                 editor.commit();
-                Intent edi = new Intent(Presentacion27.this, Carga.class);
+                activity = new Intent(Presentacion27.this, Carga.class);
                 finish();
-                startActivity(edi);
+                startActivity(activity);
                 break;
             case R.id.tres:
                 //Toast.makeText(getApplicationContext(), "Editar Recordatorio", Toast.LENGTH_SHORT).show();
-                Intent ediR = new Intent(this, EditaRecord.class);
-                startActivity(ediR);
+                activity = new Intent(this, EditaRecord.class);
+                startActivity(activity);
                 break;
             case R.id.cuatro:
                 //Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();
+                activity=new Intent(this,MedicamentoRestante.class);
+                startActivity(activity);
                 break;
             case R.id.cinco:
                 //Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();

@@ -12,6 +12,7 @@
     <string name="select_time">Selecciona hora</string>
     <string name="new_notification">Nueva notificacion</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="Informacion">Se recomienda que le de permisos a la aplicacion para el envio de mensajes en caso de que el pasiente se encuentre en riesgo, tambien permite enviar la ubicacion para que la persona que sea a quien debemos informar se le envie su ubicacion, tambien puedes omitir esta informacion pero esto limitara el funcionamiento de la aplicacion</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

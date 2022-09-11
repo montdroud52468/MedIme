@@ -39,14 +39,18 @@
                 android:id="@+id/textView"/>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre"
+                android:hint="nombre"
                 app:boxBackgroundMode="outline"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:helperText="Puedes ingresar cualquier caracter"
                 app:counterEnabled="true"
-                app:endIconMode="clear_text">
+                app:endIconMode="clear_text"
+                android:visibility="gone"
+                android:layout_marginTop="15dp"
+                app:helperText="Ejemplo Doclofenaco, Paracetamol, Etc."
+                app:startIconDrawable="@drawable/medical_negro"
+                android:id="@+id/R1">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/NomMedRes"
@@ -56,15 +60,18 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tiempo del medicamento"
                 app:boxBackgroundMode="outline"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:helperText="Puedes ingresar cualquier caracter"
                 app:counterEnabled="true"
+                android:visibility="gone"
                 app:endIconMode="clear_text"
-                android:id="@+id/TimMedT">
+                android:layout_marginTop="15dp"
+                app:helperText="Cuanto tiempo estaras medicandote en semanas"
+                app:startIconDrawable="@drawable/calendari_negro"
+                android:id="@+id/R2">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -73,15 +80,18 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/R3"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Cada cuando toma medicamento"
                 app:boxBackgroundMode="outline"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:helperText="Puedes ingresar cualquier caracter"
+                android:visibility="gone"
+                android:layout_marginTop="15dp"
                 app:counterEnabled="true"
                 app:endIconMode="clear_text"
-                android:id="@+id/TomMedT">
+                app:helperText="Tus ciclos de tomado, cada 8hrs etc."
+                app:startIconDrawable="@drawable/ic_baseline_trip_origin_24">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -90,15 +100,18 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/R4"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Cantidad de medicamento a tomar"
                 app:boxBackgroundMode="outline"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:helperText="Puedes ingresar cualquier caracter"
+                android:layout_marginTop="15dp"
                 app:counterEnabled="true"
+                android:visibility="gone"
                 app:endIconMode="clear_text"
-                android:id="@+id/CanMedT">
+                app:helperText="Por cada ciclo cuantas pastillas tomas 1 pastilla"
+                app:startIconDrawable="@drawable/favorite_negro">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -107,15 +120,18 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/R5"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Cantidad total del medicamento"
                 app:boxBackgroundMode="outline"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:helperText="Puedes ingresar cualquier caracter"
+                android:layout_marginTop="15dp"
                 app:counterEnabled="true"
+                android:visibility="gone"
                 app:endIconMode="clear_text"
-                android:id="@+id/CantMedT">
+                app:helperText="Medicamento total 30 capsulas de Diclofenaco"
+                app:startIconDrawable="@drawable/ic_baseline_radio_button_checked_24">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
