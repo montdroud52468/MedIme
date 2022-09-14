@@ -21,6 +21,8 @@ import android.text.TextWatcher;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -80,6 +82,7 @@ public class AddRecordatorios extends AppCompatActivity {
 
         cama=(GridLayout)findViewById(R.id.gridcam);
         guar=(GridLayout)findViewById(R.id.gridgua);
+        cargaAnnimaciones();
 
         cam.setOnClickListener(this::onclickaddRec);
         Rec.setOnClickListener(this::onclickaddRec);
@@ -129,6 +132,7 @@ public class AddRecordatorios extends AppCompatActivity {
             guar.setVisibility(View.VISIBLE);
             spi.setVisibility(View.VISIBLE);
             Rec.setVisibility(View.VISIBLE);
+            cargaAnnimaciones();
         }
         if(tam.equals("Pomadas")){
             //Toast.makeText(this,"Pomadas",Toast.LENGTH_LONG).show();
@@ -150,6 +154,7 @@ public class AddRecordatorios extends AppCompatActivity {
             guar.setVisibility(View.VISIBLE);
             spi.setVisibility(View.VISIBLE);
             Rec.setVisibility(View.VISIBLE);
+            cargaAnnimaciones();
         }
         if(tam.equals("Jarabes")){
             tipoMedicamento="Jarabes";
@@ -170,6 +175,7 @@ public class AddRecordatorios extends AppCompatActivity {
             guar.setVisibility(View.VISIBLE);
             spi.setVisibility(View.VISIBLE);
             Rec.setVisibility(View.VISIBLE);
+            cargaAnnimaciones();
         }
         if(tam.equals("Inyecciones")){
             tipoMedicamento="Inyecciones";
@@ -190,6 +196,7 @@ public class AddRecordatorios extends AppCompatActivity {
             guar.setVisibility(View.VISIBLE);
             spi.setVisibility(View.VISIBLE);
             Rec.setVisibility(View.VISIBLE);
+            cargaAnnimaciones();
         }if(tam.equals("Gotas")){
             tipoMedicamento="Gotas";
             //Toast.makeText(this,"Inyecciones",Toast.LENGTH_LONG).show();
@@ -209,6 +216,7 @@ public class AddRecordatorios extends AppCompatActivity {
             guar.setVisibility(View.VISIBLE);
             spi.setVisibility(View.VISIBLE);
             Rec.setVisibility(View.VISIBLE);
+            cargaAnnimaciones();
         }
     }
 
@@ -401,20 +409,42 @@ public class AddRecordatorios extends AppCompatActivity {
         String canMed=cadMT.getText().toString();
         String canmed=canMT.getText().toString();
         String cantMed=cantMT.getText().toString();
-* */
-        int pastilla=(((24*Integer.parseInt(tieMed))/Integer.parseInt(canMed))*Integer.parseInt(canmed));
-        int medicamentores=Integer.parseInt(cantMed)-pastilla;
+* */    if (tipoMedicamento!="Pomadas"){
+            int pastilla=(((24*Integer.parseInt(tieMed))/Integer.parseInt(canMed))*Integer.parseInt(canmed));
+            int medicamentores=Integer.parseInt(cantMed)-pastilla;
 
-        SharedPreferences.Editor editor10 = preferencias10.edit();
-        editor10.putString(nomMed, String.valueOf(medicamentores));
-        editor10.commit();
-        if(medicamentores<0){
-            Toast.makeText(this,"SE RECOMIENDA CONSEGUIR MAS MEDICAMENTO PARA: "+nomMed.toUpperCase(),Toast.LENGTH_LONG).show();
+            SharedPreferences.Editor editor10 = preferencias10.edit();
+            editor10.putInt(nomMed, medicamentores);
+            editor10.commit();
+            if(medicamentores<=0){
+                Toast.makeText(this,"SE RECOMIENDA CONSEGUIR MAS MEDICAMENTO PARA: "+nomMed.toUpperCase(),Toast.LENGTH_LONG).show();
+            }
         }
+
 
         Intent intent = new Intent(this, Presentacion27.class);
         startActivity(intent);
         finish();
+    }
+    private void cargaAnnimaciones(){
+        Animation animacion = AnimationUtils.loadAnimation(this, R.anim.int_ab_ar);
+        nommT.setAnimation(animacion);
+        tieMT.setAnimation(animacion);
+        cadMT.setAnimation(animacion);
+        canMT.setAnimation(animacion);
+        cantMT.setAnimation(animacion);
+        nomM.setAnimation(animacion);
+        tieM.setAnimation(animacion);
+        cadM.setAnimation(animacion);
+        canM.setAnimation(animacion);
+        cantM.setAnimation(animacion);
+        texto.setAnimation(animacion);
+        imageView2.setAnimation(animacion);
+        spi.setAnimation(animacion);
+        Rec.setAnimation(animacion);
+        cam.setAnimation(animacion);
+        cama.setAnimation(animacion);
+        guar.setAnimation(animacion);
     }
 
 }

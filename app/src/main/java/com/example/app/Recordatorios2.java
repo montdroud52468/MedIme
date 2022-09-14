@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -52,7 +54,7 @@ public class Recordatorios2 extends AppCompatActivity implements View.OnClickLis
                 startActivity(resNot);
             }
         });
-
+        cargaAnnimaciones();
     }
 
     //Evento del boton Agregar Nuevo recordatorio
@@ -105,5 +107,10 @@ public class Recordatorios2 extends AppCompatActivity implements View.OnClickLis
 
             }
         }
+    }
+    private void cargaAnnimaciones(){
+        Animation animacion = AnimationUtils.loadAnimation(this, R.anim.int_ab_ar);
+        addRec.setAnimation(animacion);
+        lv1.setAnimation(animacion);
     }
 }

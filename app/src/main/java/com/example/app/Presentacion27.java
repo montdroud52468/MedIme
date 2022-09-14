@@ -21,6 +21,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +64,8 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         card5 = (CardView) findViewById(R.id.cinco);
         card6 = (CardView) findViewById(R.id.seis);
         help = (CardView) findViewById(R.id.emergencia);
+
+        cargaAnnimaciones();
 
         card1.setOnClickListener(this);//Solo son los cardView que los hice como botones
         card2.setOnClickListener(this);
@@ -119,8 +123,7 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.tres:
                 //Toast.makeText(getApplicationContext(), "Editar Recordatorio", Toast.LENGTH_SHORT).show();
-                activity = new Intent(this, EditaRecord.class);
-                startActivity(activity);
+
                 break;
             case R.id.cuatro:
                 //Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();
@@ -190,5 +193,24 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(getApplicationContext(), "Mensaje no enviado Vuelva intentarlo", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
+    }
+    private void cargaAnnimaciones(){
+        Animation animacion = AnimationUtils.loadAnimation(this, R.anim.int_ab_ar);
+        no.setAnimation(animacion);
+        txtEme.setAnimation(animacion);
+        txtuno.setAnimation(animacion);
+        txtdos.setAnimation(animacion);
+        txttre.setAnimation(animacion);
+        txtcua.setAnimation(animacion);
+        txtcin.setAnimation(animacion);
+        txtsei.setAnimation(animacion);
+        txtsie.setAnimation(animacion);
+        card1.setAnimation(animacion);
+        card2.setAnimation(animacion);
+        card3.setAnimation(animacion);
+        card4.setAnimation(animacion);
+        card5.setAnimation(animacion);
+        card6.setAnimation(animacion);
+        help.setAnimation(animacion);
     }
 }

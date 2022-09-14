@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -55,7 +57,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         r3=(TextInputLayout)findViewById(R.id.R3);
         r4=(TextInputLayout)findViewById(R.id.R4);
         r5=(TextInputLayout)findViewById(R.id.R5);
-
+        cargaAnnimaciones();
         resimag.setOnClickListener(this);
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
@@ -192,12 +194,15 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         SharedPreferences preferencias3 = getSharedPreferences("tiempo2", Context.MODE_PRIVATE);
         SharedPreferences preferencias4 = getSharedPreferences("cantidad", Context.MODE_PRIVATE);
         SharedPreferences preferencias5 = getSharedPreferences("cantidadt", Context.MODE_PRIVATE);
+        SharedPreferences preferencias9 = getSharedPreferences("tipoMedicamentoDB", Context.MODE_PRIVATE);
+        SharedPreferences preferencias10 = getSharedPreferences("Medicamento", Context.MODE_PRIVATE);
 
         String uno = res1n.getText().toString();
         String dos = res2n.getText().toString();
         String tres = res3n.getText().toString();
         String cuatro = res4n.getText().toString();
         String cinco = res5n.getText().toString();
+        String tipo=preferencias9.getString(dato,"");
 
         SharedPreferences.Editor editor = preferencias.edit();
         SharedPreferences.Editor editor1 = preferencias1.edit();
@@ -205,6 +210,18 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         SharedPreferences.Editor editor3 = preferencias3.edit();
         SharedPreferences.Editor editor4 = preferencias4.edit();
         SharedPreferences.Editor editor5 = preferencias5.edit();
+
+        if (tipo!="Pomadas"){
+            int pastilla=(((24*Integer.parseInt(dos))/Integer.parseInt(tres))*Integer.parseInt(cuatro));
+            int medicamentores=Integer.parseInt(cinco)-pastilla;
+
+            SharedPreferences.Editor editor10 = preferencias10.edit();
+            editor10.putInt(dato, medicamentores);
+            editor10.commit();
+            if(medicamentores<=0){
+                Toast.makeText(this,"SE RECOMIENDA CONSEGUIR MAS MEDICAMENTO PARA: "+uno.toUpperCase(),Toast.LENGTH_LONG).show();
+            }
+        }
 
         editor2.remove(dos);
         editor3.remove(tres);
@@ -260,5 +277,25 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         res3n.setEnabled(true);
         res4n.setEnabled(true);
         res5n.setEnabled(true);
+    }
+
+    private void cargaAnnimaciones(){
+        Animation animacion = AnimationUtils.loadAnimation(this, R.anim.int_ab_ar);
+        res1n.setAnimation(animacion);
+        res2n.setAnimation(animacion);
+        res3n.setAnimation(animacion);
+        res4n.setAnimation(animacion);
+        res5n.setAnimation(animacion);
+        card1.setAnimation(animacion);
+        card2.setAnimation(animacion);
+        card3.setAnimation(animacion);
+        fe.setAnimation(animacion);
+        imagen.setAnimation(animacion);
+        resimag.setAnimation(animacion);
+        r1.setAnimation(animacion);
+        r2.setAnimation(animacion);
+        r3.setAnimation(animacion);
+        r4.setAnimation(animacion);
+        r5.setAnimation(animacion);
     }
 }

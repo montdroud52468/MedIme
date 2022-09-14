@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -32,7 +34,8 @@ public class MedicamentoRestante extends AppCompatActivity implements View.OnCli
         this.setTitle("MEDICAMENTO RESTANTE ");
 
         Listamedicamento =(ListView) findViewById(R.id.Recordatiorioslist);
-
+        Animation animacion = AnimationUtils.loadAnimation(this, R.anim.int_ab_ar);
+        Listamedicamento.setAnimation(animacion);
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.list_item_medicamentorecord,NombMedicamemto2);
         Listamedicamento.setAdapter(adapter);
         cargarDatos();
@@ -40,7 +43,6 @@ public class MedicamentoRestante extends AppCompatActivity implements View.OnCli
         Listamedicamento.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),"CARGANDO...",Toast.LENGTH_SHORT).show();
                 Intent resNot = new Intent(MedicamentoRestante.this, EditaRecord.class);
                 resNot.putExtra("RestanteID", (String) Listamedicamento.getItemAtPosition(i));
                 int val=1+i;
@@ -57,7 +59,6 @@ public class MedicamentoRestante extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.agregarRecord:
-                //Toast.makeText(getApplicationContext(), "Agregar Recordatorio", Toast.LENGTH_SHORT).show();
                 Intent agregar = new Intent(MedicamentoRestante.this, AddRecordatorios.class);
                 startActivity(agregar);
                 finish();

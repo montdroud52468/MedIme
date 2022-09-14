@@ -1,6 +1,7 @@
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -11,6 +12,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -23,11 +26,11 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class Principal extends AppCompatActivity {
+public class Principal extends AppCompatActivity implements View.OnClickListener{
     EditText cad1, cad2, cad3, cad4, cad5;
     Switch switch1, switch2;
     GridLayout layout;
-    Button omi, env;
+    CardView omi, env;
     ScrollView padr;
 
     @Override
@@ -42,10 +45,13 @@ public class Principal extends AppCompatActivity {
         cad5 = (EditText) findViewById(R.id.NumeroT);
         switch1 = (Switch) findViewById(R.id.sw1);
         switch2 = (Switch) findViewById(R.id.sw2);
-        omi = (Button) findViewById(R.id.Omitir);
+        omi = (CardView) findViewById(R.id.Omitir);
+        env = (CardView)findViewById(R.id.Enviar);
+        omi.setOnClickListener(this);
+        env.setOnClickListener(this);
         layout = (GridLayout) findViewById(R.id.enc);
         padr = (ScrollView) findViewById(R.id.padre);
-
+        Animation animacion = AnimationUtils.loadAnimation(this, R.anim.int_ab_ar);
         //Cargamos el estado del Switch y asi bloquear los editText restantes
         cargarPreferencias();
         if (switch1.isChecked()) {
@@ -58,9 +64,10 @@ public class Principal extends AppCompatActivity {
 
     //Aqui se encienden los objetos en el switch
     public void ence() {
-
+        Animation animacion = AnimationUtils.loadAnimation(this, R.anim.int_ab_ar);
         layout.setVisibility(View.VISIBLE);
         layout.setEnabled(true);
+        layout.setAnimation(animacion);
         omi.setVisibility(View.GONE);
         omi.setEnabled(false);
 
@@ -72,6 +79,8 @@ public class Principal extends AppCompatActivity {
         layout.setEnabled(false);
         omi.setVisibility(View.VISIBLE);
         omi.setEnabled(true);
+        Animation animacion = AnimationUtils.loadAnimation(this, R.anim.int_ab_ar);
+        omi.setAnimation(animacion);
     }
 
     //Actualizacion del switch ya dentro en la intefaz
@@ -121,8 +130,7 @@ public class Principal extends AppCompatActivity {
         String usuariot = preferencias.getString("Nombret", "No Existe la informacion");
         String apellit = preferencias.getString("Apellidot", "No Existe la informacion");
         String numbert = preferencias.getString("Numerot", "No Existe la informacion");
-        int pase = preferencias.getInt("Pase", 0);
-
+        int pase = preferencias.getInt("Pase2", 0);
 
         if (pase == 0) {
             Toast.makeText(getApplicationContext(), "CREA UN NUEVO USUARIO", Toast.LENGTH_SHORT).show();
@@ -146,26 +154,6 @@ public class Principal extends AppCompatActivity {
 
     }
 
-    //Evento del boton
-    public void onclickPrin(View view) {
-        switch (view.getId()) {
-            case R.id.Enviar:
-                guardar();
-                Toast.makeText(getApplicationContext(), "Datos Guardados con Exito", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, Presentacion27.class);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.Omitir:
-                Omitir();
-                Toast.makeText(getApplicationContext(), "Datos Omitidos", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(this, Presentacion27.class);
-                startActivity(intent2);
-                finish();
-                break;
-        }
-    }
-
     //No llenamos nada en caso de que se omita la informacion y asi bloquear el boton emergencia en presentacion27
     private void Omitir() {
         SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
@@ -183,7 +171,7 @@ public class Principal extends AppCompatActivity {
     }
 
     //Se guarda la informacion y se reactiva el boton de emergencia en presentacion27
-    public void guardar() {
+    private void guardar() {
         SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
 
         String nom = cad1.getText().toString();
@@ -203,5 +191,25 @@ public class Principal extends AppCompatActivity {
 
         editor.commit();
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.Enviar:
+                guardar();
+                Toast.makeText(getApplicationContext(), "Datos Guardados con Exito", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, Presentacion27.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.Omitir:
+                Omitir();
+                Toast.makeText(getApplicationContext(), "Datos Omitidos", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(this, Presentacion27.class);
+                startActivity(intent2);
+                finish();
+                break;
+        }
     }
 }
