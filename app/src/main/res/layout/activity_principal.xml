@@ -30,7 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:onClick="validarSw"
+                android:onClick="validarSw1"
+                android:layout_marginVertical="15dp"
                 android:text="Deseas que la aplicacion te pueda conocer y enviar mensajes en caso de emergencias"
                 android:textSize="16dp" />
 
@@ -141,7 +142,7 @@
                             android:layout_height="wrap_content"
                             android:checked="false"
                             android:layout_marginVertical="15dp"
-                            android:onClick="validarSw"
+                            android:onClick="validarSw2"
                             android:text="Permites la ubicacion del dispositivo"
                             android:textSize="16dp" />
 

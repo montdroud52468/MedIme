@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Imagen extends AppCompatActivity {
 
@@ -25,5 +26,6 @@ public class Imagen extends AppCompatActivity {
         String ima=preferencias8.getString(ruta,"");
         Bitmap img = BitmapFactory.decodeFile(ima);
         imag.setImageBitmap(img);
+        Toast.makeText(this,"Puede girar el dispositivo para ver la imagen",Toast.LENGTH_LONG).show();
     }
 }

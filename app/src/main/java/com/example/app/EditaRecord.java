@@ -6,11 +6,12 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +19,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.google.android.material.textfield.TextInputLayout;
 
 public class EditaRecord extends AppCompatActivity implements View.OnClickListener{
     String valor;
@@ -45,10 +45,7 @@ public class EditaRecord extends AppCompatActivity implements View.OnClickListen
         resultadoimagenc.setOnClickListener(this);
         cargaAnnimaciones();
         cargarDatoRes();
-
     }
-
-
 
     @Override
     public void onClick(View view) {
@@ -59,9 +56,10 @@ public class EditaRecord extends AppCompatActivity implements View.OnClickListen
                 startActivity(nu);
                 break;
             case R.id.botontrue:
-                nu=new Intent(this,Presentacion27.class);
                 finish();
-                startActivity(nu);
+                Intent activity=new Intent(this,Presentacion27.class);
+                startActivity(activity);
+                finish();
                 break;
             case R.id.Botonfalse:
                 nu=new Intent(this,ResultadoNoti.class);

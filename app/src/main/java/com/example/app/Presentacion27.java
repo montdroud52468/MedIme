@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 public class Presentacion27 extends AppCompatActivity implements View.OnClickListener {
     int alar = 0;
-    public CardView card1, card2, card3, card4, card5, card6, help;
+    public CardView card1, card2, card3, card4, card5, card6, help,card7,card8;
     TextView no, txtEme,txtuno, txtdos,txttre,txtcua ,txtcin ,txtsei,txtsie;
     private LocationManager locationManager;
 
@@ -63,6 +63,8 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         card4 = (CardView) findViewById(R.id.cuatro);
         card5 = (CardView) findViewById(R.id.cinco);
         card6 = (CardView) findViewById(R.id.seis);
+        card7 = (CardView) findViewById(R.id.siete);
+        card8 = (CardView) findViewById(R.id.ocho);
         help = (CardView) findViewById(R.id.emergencia);
 
         cargaAnnimaciones();
@@ -73,6 +75,8 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         card4.setOnClickListener(this);
         card5.setOnClickListener(this);
         card6.setOnClickListener(this);
+        card7.setOnClickListener(this);
+        card8.setOnClickListener(this);
         help.setOnClickListener(this);
 
         infor();//Para que no me funione el boton emergencia en caso de no llenar el primer formulario y cambiamos la etiqueta de la presentacion
@@ -115,15 +119,14 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
                 //Toast.makeText(getApplicationContext(), "Cargando datos del usuario", Toast.LENGTH_SHORT).show();
                 SharedPreferences preferencias = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferencias.edit();
-                editor.putInt("Pase", 2);
+                editor.putInt("MenuMidIme", 2);
                 editor.commit();
                 activity = new Intent(Presentacion27.this, Carga.class);
                 finish();
                 startActivity(activity);
                 break;
             case R.id.tres:
-                //Toast.makeText(getApplicationContext(), "Editar Recordatorio", Toast.LENGTH_SHORT).show();
-
+                finishAffinity();
                 break;
             case R.id.cuatro:
                 //Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();
@@ -132,6 +135,8 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.cinco:
                 //Toast.makeText(getApplicationContext(), "MEDICAMENTO RESTANTE", Toast.LENGTH_SHORT).show();
+                activity=new Intent(this,Pruebas.class);
+                startActivity(activity);
                 break;
             case R.id.seis:
                 //Toast.makeText(getApplicationContext(), "Calendario", Toast.LENGTH_SHORT).show();
@@ -141,7 +146,6 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
             case R.id.emergencia:
                 Alarma();
                 break;
-
 
         }
     }
@@ -211,6 +215,8 @@ public class Presentacion27 extends AppCompatActivity implements View.OnClickLis
         card4.setAnimation(animacion);
         card5.setAnimation(animacion);
         card6.setAnimation(animacion);
+        card7.setAnimation(animacion);
+        card8.setAnimation(animacion);
         help.setAnimation(animacion);
     }
 }

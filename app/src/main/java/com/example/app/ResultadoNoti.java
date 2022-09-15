@@ -239,7 +239,7 @@ public class ResultadoNoti extends AppCompatActivity implements View.OnClickList
         editor3.commit();
         editor4.commit();
         editor5.commit();
-        finish();
+        finish(); //finish Activity.
     }
 
     private void Elimina() {

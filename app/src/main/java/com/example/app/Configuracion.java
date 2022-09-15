@@ -155,8 +155,8 @@ public class Configuracion extends AppCompatActivity implements View.OnClickList
                 Eliminar();
                 Eliminarecordatorio();
                 Intent eli = new Intent(Configuracion.this, Carga.class);
-                startActivity(eli);
                 finish();
+                startActivity(eli);
             }
         });
         builder.setNegativeButton("No Eliminar Datos", new DialogInterface.OnClickListener() {

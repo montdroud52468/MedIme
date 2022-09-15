@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,88 +12,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Bienvenido"
             android:gravity="center"
-            android:textStyle="bold"
+            android:text="Bienvenido"
             android:textSize="35dp"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/info2"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_centerHorizontal="true"
-            android:text="Presentacion"
             android:gravity="center"
-            android:textStyle="bold"
+            android:text="Presentacion"
             android:textSize="20dp"
-            />
-
-    <ScrollView
-        android:id="@+id/hijo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    </LinearLayout>
-    </ScrollView>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:rowCount="1"
-            android:columnCount="1">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/emergencia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:layout_gravity="fill"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="9dp"
-                app:cardElevation="8dp"
-                >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_gravity="center_vertical|center_horizontal">
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/emergencia_negro"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="LLAMAR A EMERGENCIAS"
-                        android:textStyle="bold"
-                        android:id="@+id/TxtEme"
-                        android:textAlignment="center"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-        </GridLayout>
+            android:textStyle="bold" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,224 +45,330 @@
 
                 <GridLayout
                     android:layout_width="match_parent"
-                    android:layout_height="450dp"
-                    android:layout_below="@id/title"
-                    android:rowCount="3"
-                    android:columnCount="2"
-                    >
+                    android:layout_height="125dp"
+                    android:columnCount="1"
+                    android:rowCount="1">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/uno"
+                        android:id="@+id/emergencia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_row="0"
-                        android:layout_column="0"
-                        android:layout_gravity="fill"
                         android:layout_rowWeight="1"
+                        android:layout_column="0"
                         android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
                         android:layout_margin="8dp"
                         app:cardCornerRadius="9dp"
-                        app:cardElevation="8dp"
-                        >
+                        app:cardElevation="8dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
-                            android:layout_gravity="center_vertical|center_horizontal">
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:src="@drawable/emergencia_negro" />
+
+                            <TextView
+                                android:id="@+id/TxtEme"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="LLAMAR A EMERGENCIAS"
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                </GridLayout>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/title"
+                    android:columnCount="2"
+                    android:rowCount="4">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/uno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="125dp"
+                        android:layout_row="0"
+                        android:layout_rowWeight="1"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_margin="8dp"
+                        app:cardCornerRadius="9dp"
+                        app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:src="@drawable/alarm_negro" />
+
                             <TextView
+                                android:id="@+id/txtrec"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="RECORDATORIOS"
-                                android:id="@+id/txtrec"
-                                android:textStyle="bold"
-                                android:textAlignment="center"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:visibility="invisible"
-                                android:layout_height="wrap_content"
-                                android:text="RECORDATORIO "
-                                android:textStyle="bold"
-                                android:textAlignment="center"/>
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
+
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
-
-
-
 
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/dos"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="125dp"
                         android:layout_row="0"
-                        android:layout_column="1"
-                        android:layout_gravity="fill"
                         android:layout_rowWeight="1"
+                        android:layout_column="1"
                         android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
                         android:layout_margin="8dp"
                         app:cardCornerRadius="9dp"
-                        app:cardElevation="8dp"
-                        >
+                        app:cardElevation="8dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
-                            android:layout_gravity="center_vertical|center_horizontal">
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/edit_negro"/>
+                                android:src="@drawable/edit_negro" />
+
                             <TextView
-                                android:layout_width="wrap_content"
                                 android:id="@+id/txtinfo"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="EDITAR INFORM."
-                                android:textStyle="bold"
-                                android:textAlignment="center"/>
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/siete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="125dp"
+                        android:layout_row="2"
+                        android:layout_rowWeight="1"
+                        android:layout_column="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_margin="8dp"
+                        app:cardCornerRadius="9dp"
+                        app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_baseline_info_24" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="PROXIMAMENTE"
+                                android:id="@+id/txted1"
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
 
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/ocho"
+                        android:layout_width="wrap_content"
+                        android:layout_height="125dp"
+                        android:layout_row="3"
+                        android:layout_rowWeight="1"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_margin="8dp"
+                        app:cardCornerRadius="9dp"
+                        app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_baseline_info_24" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="INFORMACIÓN"
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SOBRE LA APP"
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/tres"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="1"
-                        android:layout_column="0"
-                        android:layout_gravity="fill"
+                        android:layout_height="125dp"
+                        android:layout_row="3"
                         android:layout_rowWeight="1"
+                        android:layout_column="1"
                         android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
                         android:layout_margin="8dp"
                         app:cardCornerRadius="9dp"
-                        app:cardElevation="8dp"
-                        >
+                        app:cardElevation="8dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
-                            android:layout_gravity="center_vertical|center_horizontal">
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/sin_asignar"/>
+                                android:src="@drawable/ic_baseline_exit_to_app_24" />
+
+
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="AUN NO"
-                                android:id="@+id/txted1"
-                                android:textStyle="bold"
-                                android:textAlignment="center"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="ASIGNADA"
                                 android:id="@+id/txted2"
-                                android:textStyle="bold"
-                                android:textAlignment="center"/>
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SALIR"
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
 
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
-
 
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cuatro"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="125dp"
                         android:layout_row="1"
-                        android:layout_column="1"
-                        android:layout_gravity="fill"
                         android:layout_rowWeight="1"
+                        android:layout_column="0"
                         android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
                         android:layout_margin="8dp"
                         app:cardCornerRadius="9dp"
-                        app:cardElevation="8dp"
-                        >
+                        app:cardElevation="8dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
-                            android:layout_gravity="center_vertical|center_horizontal">
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/medical_negro"/>
+                                android:src="@drawable/medical_negro" />
+
                             <TextView
+                                android:id="@+id/txtmed1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="MEDICAMENTO"
-                                android:id="@+id/txtmed1"
-                                android:textStyle="bold"
-                                android:textAlignment="center"/>
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
+
                             <TextView
+                                android:id="@+id/txtmed2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="RESTANTE"
-                                android:id="@+id/txtmed2"
-                                android:textStyle="bold"
-                                android:textAlignment="center"/>
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
 
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
 
-
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cinco"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_row="2"
-                        android:layout_column="0"
-                        android:layout_gravity="fill"
+                        android:layout_height="125dp"
+                        android:layout_row="1"
                         android:layout_rowWeight="1"
+                        android:layout_column="1"
                         android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
                         android:layout_margin="8dp"
                         app:cardCornerRadius="9dp"
-                        app:cardElevation="8dp"
-                        >
+                        app:cardElevation="8dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
-                            android:layout_gravity="center_vertical|center_horizontal">
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/calendari_negro"/>
+                                android:src="@drawable/calendari_negro" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="CHECAR"/>
+                                android:text="CHECAR" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="CALENDARIO"
-                                android:textStyle="bold"
-                                android:textAlignment="center"/>
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
 
 
                         </LinearLayout>
@@ -327,36 +377,35 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/seis"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="125dp"
                         android:layout_row="2"
-                        android:layout_column="1"
-                        android:layout_gravity="fill"
                         android:layout_rowWeight="1"
+                        android:layout_column="0"
                         android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
                         android:layout_margin="8dp"
                         app:cardCornerRadius="9dp"
-                        app:cardElevation="8dp"
-                        >
+                        app:cardElevation="8dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
-                            android:layout_gravity="center_vertical|center_horizontal">
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/setting_negro"/>
+                                android:src="@drawable/setting_negro" />
+
                             <TextView
+                                android:id="@+id/txtconf"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="CONFIGURACION"
-
-                                android:id="@+id/txtconf"
-                                android:textStyle="bold"
-                                android:textAlignment="center"/>
+                                android:textAlignment="center"
+                                android:textStyle="bold" />
 
 
                         </LinearLayout>
@@ -371,6 +420,4 @@
 
     </LinearLayout>
 
-
-
-</RelativeLayout>
+</LinearLayout>

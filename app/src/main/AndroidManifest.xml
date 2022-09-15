@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_MMS" />
     <uses-permission
@@ -34,8 +35,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.APP">
         <activity
-            android:name=".MedicamentoRestante"
+            android:name=".Pruebas"
             android:exported="false" />
+        <activity
+            android:name=".MedicamentoRestante"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Imagen"
             android:exported="false" />
@@ -56,19 +61,24 @@
 
         <activity
             android:name=".Carga2"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Recordatorios2"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Configuracion"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EditaRecord"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ResultadoNoti"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddRecordatorios"
             android:exported="false"

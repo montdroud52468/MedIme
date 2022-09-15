@@ -312,7 +312,6 @@ public class AddRecordatorios extends AppCompatActivity {
         }
     }
 
-
     private void guardarDatos() {
 
         SharedPreferences preferencias = getSharedPreferences("MedicamentoBDD", Context.MODE_PRIVATE);
@@ -416,7 +415,7 @@ public class AddRecordatorios extends AppCompatActivity {
             SharedPreferences.Editor editor10 = preferencias10.edit();
             editor10.putInt(nomMed, medicamentores);
             editor10.commit();
-            if(medicamentores<=0){
+            if(medicamentores<0){
                 Toast.makeText(this,"SE RECOMIENDA CONSEGUIR MAS MEDICAMENTO PARA: "+nomMed.toUpperCase(),Toast.LENGTH_LONG).show();
             }
         }
@@ -424,8 +423,8 @@ public class AddRecordatorios extends AppCompatActivity {
 
         Intent intent = new Intent(this, Presentacion27.class);
         startActivity(intent);
-        finish();
     }
+
     private void cargaAnnimaciones(){
         Animation animacion = AnimationUtils.loadAnimation(this, R.anim.int_ab_ar);
         nommT.setAnimation(animacion);

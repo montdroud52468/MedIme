@@ -21,8 +21,8 @@ public class Carga extends AppCompatActivity {
             @Override
             public void run() {//No es necesario mover nada en esta paguina solo es el el efecto de carga en alguna accion
                 Intent intent = new Intent(Carga.this, Principal.class);
-                startActivity(intent);
                 finish();
+                startActivity(intent);
             }
         }, 2000);
     }

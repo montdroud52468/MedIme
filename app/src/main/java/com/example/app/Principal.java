@@ -1,15 +1,20 @@
 package com.example.app;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -60,6 +65,68 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         } else {
             apag();
         }
+        cad1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                int aux=0;
+                if (switch1.isChecked()) {
+                    if ((ActivityCompat.checkSelfPermission(Principal.this, Manifest.permission.SEND_SMS)//Permisos para enviar mensajes desde la app
+                            != PackageManager.PERMISSION_GRANTED)) {
+                        //Toast.makeText(this,"No",Toast.LENGTH_LONG).show();
+                        switch1.setChecked(false);
+                        apag();
+                        cad1.setEnabled(false);
+                        cad2.setEnabled(false);
+                        cad3.setEnabled(false);
+                        cad4.setEnabled(false);
+                        cad5.setEnabled(false);
+                        cad1.setText(null);
+                        cad2.setText(null);
+                        cad3.setText(null);
+                        cad4.setText(null);
+                        cad5.setText(null);
+                        switch2.setChecked(false);
+                        Toast.makeText(Principal.this,"Se requiere de activar mensajes para usar esta informacion",Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+
+        cad3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (switch2.isChecked()) {
+                    if (ActivityCompat.checkSelfPermission(Principal.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Principal.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        switch2.setChecked(false);
+                        Toast.makeText(getApplicationContext(), "No se autorizo envios de GPS via SMS", Toast.LENGTH_SHORT).show();
+                    }else{
+                        switch2.setChecked(true);
+                    }
+                }
+            }
+        });
     }
 
     //Aqui se encienden los objetos en el switch
@@ -84,25 +151,32 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     }
 
     //Actualizacion del switch ya dentro en la intefaz
-    public void validarSw(View view) {
+    public void validarSw1(View view) {
         if (switch1.isChecked()) {
             ence();
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)//Permisos para enviar mensajes desde la app
-                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                apag();
-                switch1.setChecked(false);
-                Toast.makeText(getApplicationContext(), "No se autorizo envios de SMS", Toast.LENGTH_SHORT).show();
-                ActivityCompat.requestPermissions(this, new String[]{
-                        Manifest.permission.SEND_SMS,}, 4000);
-            } else {
-                switch1.setChecked(true);
-                Toast.makeText(getApplicationContext(), "Se autorizo envios de SMS", Toast.LENGTH_SHORT).show();
-            }
-        }else {
+            cad1.setEnabled(true);
+            cad2.setEnabled(true);
+            cad3.setEnabled(true);
+            cad4.setEnabled(true);
+            cad5.setEnabled(true);
+        } else {
             apag();
+            cad1.setText(null);
+            cad2.setText(null);
+            cad3.setText(null);
+            cad4.setText(null);
+            cad5.setText(null);
         }
+        if (switch1.isChecked()) {
+            if ((ActivityCompat.checkSelfPermission(Principal.this, Manifest.permission.SEND_SMS)//Permisos para enviar mensajes desde la app
+                    != PackageManager.PERMISSION_GRANTED)) {
+                ActivityCompat.requestPermissions(Principal.this, new String[]{
+                        Manifest.permission.SEND_SMS,}, 4000);
+            }
+        }
+    }
 
+    public void validarSw2(View view) {
         if (switch2.isChecked()) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -112,13 +186,10 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                 ActivityCompat.requestPermissions(this, new String[]{
                         Manifest.permission.ACCESS_FINE_LOCATION,}, 4000);
             } else {
-                switch1.setChecked(true);
+                switch2.setChecked(true);
                 Toast.makeText(getApplicationContext(), "Se autorizo envios de GPS via SMS", Toast.LENGTH_SHORT).show();
-
             }
-
         }
-
     }
 
     //En caso de que se edite esta informacion Se cargaran los datos que ya se habian puesto con anterioridad
@@ -130,7 +201,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         String usuariot = preferencias.getString("Nombret", "No Existe la informacion");
         String apellit = preferencias.getString("Apellidot", "No Existe la informacion");
         String numbert = preferencias.getString("Numerot", "No Existe la informacion");
-        int pase = preferencias.getInt("Pase2", 0);
+        int pase = preferencias.getInt("MenuMidIme", 0);
 
         if (pase == 0) {
             Toast.makeText(getApplicationContext(), "CREA UN NUEVO USUARIO", Toast.LENGTH_SHORT).show();
@@ -164,8 +235,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         editor.putString("Nombret", nom);
         editor.putString("Apellidot", nom);
         editor.putString("Numerot", nom);
-        editor.putInt("Pase", 1);
-        editor.putString("ID", "0");
+        editor.putInt("MenuMidIme", 1);
 
         editor.commit();
     }
@@ -180,16 +250,34 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         String nomt = cad3.getText().toString();
         String apet = cad4.getText().toString();
 
-        SharedPreferences.Editor editor = preferencias.edit();
-        editor.putString("Nombre", nom);
-        editor.putString("Apellido", ape);
-        editor.putString("Nombret", nomt);
-        editor.putString("Apellidot", apet);
-        editor.putString("Numerot", num);
-        editor.putString("ID", "0");
-        editor.putInt("Pase", 1);
+        if(nom.equals("")||ape.equals("")||num.equals("")||nomt.equals("")||apet.equals("")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        editor.commit();
+            builder.setMessage("Es necesario que llene toda la información").setTitle("DATOS INCOMPLETOS");
+
+            builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }else{
+            SharedPreferences.Editor editor = preferencias.edit();
+            editor.putString("Nombre", nom);
+            editor.putString("Apellido", ape);
+            editor.putString("Nombret", nomt);
+            editor.putString("Apellidot", apet);
+            editor.putString("Numerot", num);
+            editor.putInt("MenuMidIme", 1);
+
+            editor.commit();
+            Toast.makeText(getApplicationContext(), "Datos Guardados con Exito", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, Presentacion27.class);
+            startActivity(intent);
+            finish();
+        }
+
 
     }
 
@@ -198,10 +286,6 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         switch (view.getId()) {
             case R.id.Enviar:
                 guardar();
-                Toast.makeText(getApplicationContext(), "Datos Guardados con Exito", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, Presentacion27.class);
-                startActivity(intent);
-                finish();
                 break;
             case R.id.Omitir:
                 Omitir();

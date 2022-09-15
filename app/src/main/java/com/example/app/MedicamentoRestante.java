@@ -49,6 +49,7 @@ public class MedicamentoRestante extends AppCompatActivity implements View.OnCli
                 String id2=Integer.toString(val);
                 resNot.putExtra("IDRea",id2);
                 startActivity(resNot);
+                finish();
             }
         });
 

@@ -18,8 +18,8 @@ public class Carga2 extends AppCompatActivity {
             public void run() {
                 //Toast.makeText(getApplicationContext(),"Eliminando Recordatorios",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Carga2.this, Presentacion27.class);
-                startActivity(intent);
                 finish();
+                startActivity(intent);
             }
         }, 1500);
     }
