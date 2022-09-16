@@ -1,17 +1,14 @@
 package com.example.app;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -90,14 +87,13 @@ public class Pruebas extends AppCompatActivity implements View.OnClickListener {
                     .setContentTitle(nombre.toUpperCase())
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setContentText(presentacion)
-                    .setPriority(NotificationCompat.PRIORITY_MAX)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
                     .setContentIntent(pendingIntent)
                     .setSmallIcon(R.drawable.iconcap)
-                    .setCategory(NotificationCompat.CATEGORY_ALARM)
+                    .setCategory(NotificationCompat.CATEGORY_CALL)
                     .setAutoCancel(true)
                     .setSound(soundUri)
                     .setColor(clr)
-                    .setContentIntent(pendingIntent)
                     .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
                     .setLargeIcon(img)
                     .addAction(R.drawable.iconcap,"Ya lo he tomado",YaMedicamento)
@@ -124,7 +120,6 @@ public class Pruebas extends AppCompatActivity implements View.OnClickListener {
                     .setAutoCancel(true)
                     .setSound(soundUri)
                     .setColor(clr)
-                    .setContentIntent(pendingIntent)
                     .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
                     .setLargeIcon(img)
                     .addAction(R.drawable.iconcap,"Ya lo he tomado",YaMedicamento)
@@ -144,15 +139,18 @@ public class Pruebas extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
             case (R.id.boton):
                 cargar(x);
-                setNoPendingIntent();
-                setSiPendingIntent();
-                setPendingIntent();
-                createNotification();
-                createNotificationChannel();
+                Anuma();
                 Toast.makeText(this,""+x,Toast.LENGTH_LONG).show();
                 x=x+1;
                 break;
         }
+    }
+    public void Anuma(){
+        setNoPendingIntent();
+        setSiPendingIntent();
+        setPendingIntent();
+        createNotification();
+        createNotificationChannel();
     }
 
     private void cargar(int w) {
@@ -191,10 +189,10 @@ public class Pruebas extends AppCompatActivity implements View.OnClickListener {
             presentacion="Toma tus "+cantidad_total_pastillas+" ml de "+tipo+" "+nombre;
         }
         if(tipo.equals("Inyecciones")){
-            presentacion="Es momento de inyectar "+cantidad_total_pastillas+tipo+" de "+nombre;
+            presentacion="Es momento de inyectar "+cantidad_total_pastillas+" "+tipo+" de "+nombre;
         }
         if(tipo.equals("Gotas")){
-            presentacion="Aplica "+cantidad_total_pastillas+tipo+" de "+nombre+"en el area afectada";
+            presentacion="Aplica "+cantidad_total_pastillas+" "+tipo+" de "+nombre+"en el area afectada";
         }
     }
 }
